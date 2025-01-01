@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/components/quick_action_cards.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -88,7 +89,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 )
               ]),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               const Text(
                 'Quick Actions',
@@ -102,20 +103,77 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Row(
                   children: [
                     QuickActionCards(
-                      icon: 'assets/images/bank2.png',
-                      time: 'Money Transfer',
+                      icon: 'assets/icons/recharge.svg',
+                      time: 'Bills',
                     ),
                     QuickActionCards(
-                      icon: 'assets/images/bank2.png',
-                      time: 'Pay Bills',
+                      icon: 'assets/icons/charity.svg',
+                      time: 'Charity',
                     ),
                     QuickActionCards(
-                      icon: 'assets/images/bank2.png',
-                      time: 'Bank Transfer',
+                      icon: 'assets/icons/loan.svg',
+                      time: 'Loan',
+                    ),
+                    QuickActionCards(
+                      icon: 'assets/icons/gift.svg',
+                      time: 'Gifts',
                     ),
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Scheduled Payments',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'View All',
+                      style: TextStyle(color: Color(0xffA4A9AE), fontSize: 16),
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                width: double.infinity,
+                height: 110,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(10))),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 80,
+                        height: 80,
+                        child: Card(
+                          elevation: 10,
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: SvgPicture.asset(
+                            fit: BoxFit.fill,
+                            width: 34,
+                            height: 34,
+                            'assets/icons/loan.svg',
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),

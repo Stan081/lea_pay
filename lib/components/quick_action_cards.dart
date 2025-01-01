@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class QuickActionCards extends StatelessWidget {
   final String icon;
@@ -27,20 +28,22 @@ class QuickActionCards extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
-                child: SizedBox(
-                  child: Image.asset(
-                    icon,
-                  ),
+                child: SvgPicture.asset(
+                  width: 34,
+                  height: 34,
+                  color: const Color(0xff004D43),
+                  icon,
                 ),
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Text(
             time,
             style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w500,
-            ),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: Color(0xffA4A9AE)),
           ),
         ],
       ),
