@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/components/quick_action_cards.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -11,6 +12,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(30),
@@ -91,7 +93,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const Text(
                 'Quick Actions',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              )
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    QuickActionCards(
+                      icon: 'assets/images/bank2.png',
+                      time: 'Money Transfer',
+                    ),
+                    QuickActionCards(
+                      icon: 'assets/images/bank2.png',
+                      time: 'Pay Bills',
+                    ),
+                    QuickActionCards(
+                      icon: 'assets/images/bank2.png',
+                      time: 'Bank Transfer',
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
