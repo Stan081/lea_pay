@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 63,
                   child: TextField(
                     decoration: InputDecoration(
-                      suffixIconColor: Color(0xff004D43),
+                      suffixIconColor: const Color(0xff004D43),
                       suffixIcon: IconButton(
                         iconSize: 30,
                         onPressed: () {},
