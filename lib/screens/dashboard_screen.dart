@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
+import 'package:lea_pay/components/general_components.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -181,58 +181,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
-      bottomSheet: Container(
-        width: double.infinity,
-        height: 90,
-        decoration: const BoxDecoration(color: Colors.white),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            textBaseline: TextBaseline.ideographic,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/6.svg',
-                  // color: const Color(0xff004D43),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/2.svg',
-                  color: const Color(0xff004D43),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  height: 45,
-                  width: 45,
-                  'assets/icons/3.svg',
-                  color: const Color(0xff004D43),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/4.svg',
-                  color: const Color(0xff004D43),
-                ),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  'assets/icons/5.svg',
-                  color: const Color(0xff004D43),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BottomNavigation(),
     );
   }
 }
