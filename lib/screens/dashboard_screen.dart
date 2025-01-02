@@ -195,7 +195,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               IconButton(
                 onPressed: () {},
                 icon: SvgPicture.asset(
-                  'assets/icons/1.svg',
+                  'assets/icons/home.svg',
                   // color: const Color(0xff004D43),
                 ),
               ),
