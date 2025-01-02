@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                   Positioned(
                     top: 90,
-                    left: 230,
+                    left: 240,
                     child: TextButton(
                       onPressed: () {},
                       child: const Row(
@@ -144,9 +145,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 5,
-                ),
                 const Padding(
                   padding: EdgeInsets.only(bottom: 60.0),
                   child: Column(
@@ -172,6 +170,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         time: '19:47',
                         points: null,
                       ),
+                      SizedBox(
+                        height: 15,
+                      ),
                     ],
                   ),
                 )
@@ -185,32 +186,48 @@ class _DashboardScreenState extends State<DashboardScreen> {
         height: 90,
         decoration: const BoxDecoration(color: Colors.white),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
+            crossAxisAlignment: CrossAxisAlignment.center,
             textBaseline: TextBaseline.ideographic,
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.home),
+                icon: SvgPicture.asset(
+                  'assets/icons/1.svg',
+                  // color: const Color(0xff004D43),
+                ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.home),
-              ),
-              IconButton(
-                iconSize: 40,
-                onPressed: () {},
-                icon: Icon(Icons.home),
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.home),
+                icon: SvgPicture.asset(
+                  'assets/icons/2.svg',
+                  color: const Color(0xff004D43),
+                ),
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.home),
+                icon: SvgPicture.asset(
+                  height: 45,
+                  width: 45,
+                  'assets/icons/3.svg',
+                  color: const Color(0xff004D43),
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/icons/4.svg',
+                  color: const Color(0xff004D43),
+                ),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                  'assets/icons/5.svg',
+                  color: const Color(0xff004D43),
+                ),
               ),
             ],
           ),
