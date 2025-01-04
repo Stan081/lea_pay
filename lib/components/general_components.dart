@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lea_pay/screens/dashboard_screen.dart';
+import 'package:lea_pay/screens/make_payment_screen.dart';
+
+class BaseAppComponent extends StatelessWidget {
+  final Widget body;
+  const BaseAppComponent({super.key, required this.body});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: const Color(0xffF3F3F3),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: body,
+        ),
+        bottomNavigationBar: const BottomNavigation());
+  }
+}
 
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation({
@@ -20,7 +38,14 @@ class BottomNavigation extends StatelessWidget {
           textBaseline: TextBaseline.ideographic,
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardScreen(),
+                  ),
+                );
+              },
               icon: SvgPicture.asset(
                 'assets/icons/1.svg',
                 color: const Color(0xff004D43),
@@ -34,7 +59,14 @@ class BottomNavigation extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MakePaymentScreen(),
+                  ),
+                );
+              },
               icon: SvgPicture.asset(
                 height: 45,
                 width: 45,

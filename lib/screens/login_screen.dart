@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/signup_screen.dart';
+import 'package:lea_pay/utils/authenticator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -10,7 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool? showPassword = false;
+  bool showPassword = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,22 @@ class _LoginScreenState extends State<LoginScreen> {
                       suffixIconColor: const Color(0xff004D43),
                       suffixIcon: IconButton(
                         iconSize: 30,
-                        onPressed: () {},
+                        onPressed: () async {
+                          if (showPassword == false) {
+                            showPassword = await authenticate(context);
+                            !showPassword
+                                ? print('hello')
+                                : Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignupScreen(),
+                                    ),
+                                  );
+                          } else {
+                            print('not authenticated');
+                          }
+                        },
                         icon: const Icon(
                           Icons.fingerprint_outlined,
                         ),
@@ -89,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             value: showPassword,
                             onChanged: (value) {
                               setState(() {
-                                showPassword = value;
+                                showPassword = value!;
                               });
                             },
                           ),
@@ -105,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ]),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 SizedBox(
                   height: 63,
@@ -133,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
