@@ -12,8 +12,8 @@ class BaseAppComponent extends StatelessWidget {
     return Scaffold(
         backgroundColor: const Color(0xffF3F3F3),
         body: Padding(
-          padding: const EdgeInsets.all(20),
-          child: body,
+          padding: const EdgeInsets.all(16),
+          child: SafeArea(child: body),
         ),
         bottomNavigationBar: const BottomNavigation());
   }
