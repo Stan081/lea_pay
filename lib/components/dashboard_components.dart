@@ -19,7 +19,7 @@ class QuickActionCards extends StatelessWidget {
         children: [
           SizedBox(
             width: 96,
-            height: 100.6,
+            height: 100,
             child: Card(
               elevation: 0,
               color: Colors.white,
@@ -30,7 +30,9 @@ class QuickActionCards extends StatelessWidget {
                 child: SvgPicture.asset(
                   width: 34,
                   height: 34,
-                  color: const Color(0xff004D43),
+                  //color: const Color(0xff004D43),
+                  colorFilter:
+                      ColorFilter.mode(Color(0xff004D43), BlendMode.dst),
                   icon,
                 ),
               ),
@@ -71,7 +73,7 @@ class PaymentsCards extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Container(
         width: double.infinity,
-        height: 110,
+        height: 100,
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -99,20 +101,23 @@ class PaymentsCards extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           vendor,
-                          style: const TextStyle(fontSize: 18),
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
                         Text(
                           time,
-                          style: const TextStyle(color: Color(0xffA4A9AE)),
+                          style: const TextStyle(
+                              fontSize: 18, color: Color(0xffA4A9AE)),
                         )
                       ],
                     ),
@@ -124,7 +129,7 @@ class PaymentsCards extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '\$ $price',
+                    '\$$price',
                     style: const TextStyle(
                         fontSize: 22, fontWeight: FontWeight.bold),
                   ),
