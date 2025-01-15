@@ -10,10 +10,14 @@ class MakePaymentScreen extends StatefulWidget {
 class _MakePaymentScreen extends State<MakePaymentScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SizedBox(
+    return Scaffold(
+      body: const SizedBox(
         width: 100,
         height: 100,
+      ),
+      floatingActionButton: IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.cancel_outlined),
       ),
     );
   }
