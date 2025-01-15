@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/login_screen.dart';
 
@@ -148,31 +149,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  SizedBox(
-                    height: 63,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DashboardScreen(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xffD0FF71),
-                          shadowColor: Colors.transparent,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          elevation: 20),
-                      child: const Text(
-                        'Sign Up',
-                        style:
-                            TextStyle(color: Color(0xff004D43), fontSize: 15),
-                      ),
-                    ),
+                  PrimaryButton(
+                    text: 'Sign Up',
+                    action: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DashboardScreen(),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 40,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/signup_screen.dart';
 import 'package:lea_pay/utils/authenticator.dart';
@@ -44,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fillColor: Colors.white,
                       hintText: "username",
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                     ),
                   ),
@@ -83,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fillColor: Colors.white,
                       hintText: "password",
                       border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
                     ),
                   ),
@@ -123,30 +124,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                SizedBox(
-                  height: 63,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DashboardScreen(),
-                        ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xffD0FF71),
-                        shadowColor: Colors.transparent,
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
-                        elevation: 20),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(color: Color(0xff004D43), fontSize: 15),
-                    ),
-                  ),
+                PrimaryButton(
+                  text: 'Login',
+                  action: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DashboardScreen(),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 30,
