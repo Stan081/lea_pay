@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
+import 'package:lea_pay/components/virtual_card.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -17,61 +19,14 @@ class _WalletScreenState extends State<WalletScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CircleAvatar(
-                  child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.person_2_outlined)),
-                ),
-                const Text(
-                  "Welcome Lea",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                const Stack(
-                  children: [
-                    Icon(
-                      Icons.notifications_none_rounded,
-                      size: 35,
-                    )
-                  ],
-                )
-              ],
-            ),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 3,
-              width: double.infinity,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: Image.asset(
-                            scale: 1.1,
-                            'assets/illustrations/card.png',
-                            fit: BoxFit.fill,
-                          ),
-                        )
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Image.asset(
-                          scale: 1.1,
-                          'assets/illustrations/card.png',
-                          fit: BoxFit.fill,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+            const SingleChildScrollView(
+              dragStartBehavior: DragStartBehavior.start,
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  VirtualCard(),
+                  VirtualCard(),
+                ],
               ),
             ),
             Row(
