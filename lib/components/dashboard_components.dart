@@ -18,8 +18,8 @@ class QuickActionCards extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            width: 96,
-            height: 100,
+            width: 80,
+            height: 80,
             child: Card(
               elevation: 0,
               color: Colors.white,
