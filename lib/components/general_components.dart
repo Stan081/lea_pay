@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/screens/components.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/make_payment_screen.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class BaseAppComponent extends StatelessWidget {
+  final PreferredSizeWidget appBar;
   final Widget body;
   final double? paddingTop = 16;
-  const BaseAppComponent({super.key, required this.body});
+  const BaseAppComponent({super.key, required this.body, required this.appBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: backgroundColor,
-        appBar: const MyAppBar(),
+        appBar: appBar,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: SafeArea(child: body),
         ),
         bottomNavigationBar: const BottomNavigation());
+  }
+}
+
+class Headings extends StatelessWidget {
+  final String text;
+  const Headings({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.fitWidth,
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }
 
@@ -104,35 +120,6 @@ class BottomNavigation extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class PrimaryButton extends StatelessWidget {
-  final String text;
-  final Function action;
-  const PrimaryButton({super.key, required this.text, required this.action});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 63,
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          action();
-        },
-        style: ElevatedButton.styleFrom(
-            backgroundColor: secondaryColor,
-            shadowColor: Colors.transparent,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30))),
-            elevation: 20),
-        child: Text(
-          text,
-          style: const TextStyle(color: Color(0xff004D43), fontSize: 15),
         ),
       ),
     );
