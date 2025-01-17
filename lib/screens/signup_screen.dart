@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lea_pay/components/general_components.dart';
+import 'package:lea_pay/components/buttons.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/login_screen.dart';
 
