@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
+import 'package:lea_pay/components/transactions.dart';
 import 'package:lea_pay/screens/wallet_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -14,6 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseAppComponent(
+      appBar: const WelcomeAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -22,50 +25,63 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Stack(children: [
                 SizedBox(
                   width: double.infinity,
-                  height: 160,
+                  height: MediaQuery.of(context).size.height / 5,
                   child: Image.asset(
                     'assets/illustrations/balance_banner.jpg',
                     fit: BoxFit.fill,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(20),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 20, bottom: 20, left: 20, right: 6),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('Total Balance',
-                          style: TextStyle(fontSize: 20, color: Colors.white)),
-                      Text(
-                        "\$100,000,000",
-                        style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                      const Text(
+                        'Total Balance',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const FittedBox(
+                        fit: BoxFit.fill,
+                        child: Text(
+                          "\$100,000,000",
+                          style: TextStyle(
+                              fontSize: 45,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const WalletScreen()));
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text('My Wallet ',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    )),
+                                Icon(
+                                  Icons.arrow_circle_right,
+                                  size: 45,
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ],
                   ),
                 ),
-                Positioned(
-                  top: 90,
-                  left: 220,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const WalletScreen()));
-                    },
-                    child: const Row(
-                      children: [
-                        Text('My Wallet '),
-                        Icon(
-                          Icons.arrow_circle_right,
-                          size: 45,
-                        ),
-                      ],
-                    ),
-                  ),
-                )
               ]),
               const SizedBox(
                 height: 30,
@@ -91,8 +107,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       time: 'Loan',
                     ),
                     QuickActionCards(
-                      icon: 'assets/icons/gift.svg',
+                      icon: 'assets/icons/charity.svg',
                       time: 'Gifts',
+                    ),
+                    QuickActionCards(
+                      icon: 'assets/icons/loan.svg',
+                      time: 'Charity',
                     ),
                   ],
                 ),
@@ -100,45 +120,93 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Headings(text: 'Scheduled Payment'),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'View All',
-                      style: TextStyle(color: Color(0xffA4A9AE), fontSize: 16),
-                    ),
-                  )
-                ],
-              ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 60.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 60.0),
                 child: Column(
                   children: [
-                    PaymentsCards(
+                    const TransactionCard(
+                      height: 2,
+                      heading: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Headings(text: 'Transactions'),
+                          Text(
+                            'See all',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          )
+                        ],
+                      ),
+                      content: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TransactionItem(
+                            vendor: 'Netflix',
+                            logo: 'assets/icons/netflix.png',
+                            price: '10.00',
+                            time: '11:00 AM',
+                            points: '25',
+                          ),
+                          TransactionItem(
+                            vendor: 'Paypal',
+                            logo: 'assets/icons/paypal.png',
+                            price: '200.00',
+                            time: '02:35 PM',
+                            points: '10',
+                          ),
+                          TransactionItem(
+                            vendor: 'Spotify',
+                            logo: 'assets/icons/spotify.png',
+                            price: '23.85',
+                            time: '07:47 PM',
+                            points: '0',
+                          ),
+                          TransactionItem(
+                            vendor: 'Spotify',
+                            logo: 'assets/icons/spotify.png',
+                            price: '23.85',
+                            time: '07:47 PM',
+                            points: '0',
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Headings(text: 'Scheduled Payment'),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'View All',
+                            style: TextStyle(
+                                color: Color(0xffA4A9AE), fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
+                    const PaymentsCards(
                       vendor: 'Netflix',
                       logo: 'assets/icons/netflix.png',
                       price: '10.00',
                       time: '11:00 AM',
                       points: '25',
                     ),
-                    PaymentsCards(
+                    const PaymentsCards(
                       vendor: 'Paypal',
                       logo: 'assets/icons/paypal.png',
                       price: '200.00',
                       time: '02:35 PM',
                       points: '10',
                     ),
-                    PaymentsCards(
+                    const PaymentsCards(
                       vendor: 'Spotify',
                       logo: 'assets/icons/spotify.png',
                       price: '23.85',
                       time: '07:47 PM',
                       points: null,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                   ],
@@ -148,19 +216,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class Headings extends StatelessWidget {
-  final String text;
-  const Headings({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
 }
