@@ -1,9 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/virtual_card.dart';
-import 'package:lea_pay/screens/dashboard_screen.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
@@ -16,6 +16,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseAppComponent(
+      appBar: const NavigatorAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
