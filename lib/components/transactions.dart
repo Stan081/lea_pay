@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/screens/transaction_details_screen.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -10,20 +11,24 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var divisor = height ?? 2;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 25),
       child: Container(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height / divisor,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30), color: Colors.white),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [heading, content],
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: heading,
+              ),
+              content
+            ],
           ),
         ),
       ),
@@ -90,7 +95,7 @@ class TransactionValues extends StatelessWidget {
           '\$$price',
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         LeaPoints(myPoints: myPoints),
@@ -207,12 +212,24 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TransactionDetails(
-          vendor: vendor,
-          logo: logo,
-          price: price,
-          time: time,
-          points: points,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const TransactionDetailsScreen(),
+              ),
+            );
+          },
+          child: Expanded(
+            child: TransactionDetails(
+              vendor: vendor,
+              logo: logo,
+              price: price,
+              time: time,
+              points: points,
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 65),
