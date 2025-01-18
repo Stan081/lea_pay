@@ -3,18 +3,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/screens/components.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/make_payment_screen.dart';
+import 'package:lea_pay/screens/settings_screen.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class BaseAppComponent extends StatelessWidget {
   final PreferredSizeWidget appBar;
   final Widget body;
   final double? paddingTop = 16;
-  const BaseAppComponent({super.key, required this.body, required this.appBar});
+  final Color? color;
+  const BaseAppComponent(
+      {super.key, required this.body, required this.appBar, this.color});
 
   @override
   Widget build(BuildContext context) {
+    var color = this.color ?? backgroundColor;
     return Scaffold(
-        backgroundColor: backgroundColor,
+        backgroundColor: color,
         appBar: appBar,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -34,7 +38,7 @@ class Headings extends StatelessWidget {
       fit: BoxFit.fitWidth,
       child: Text(
         text,
-        style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -49,13 +53,16 @@ class BottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 90,
       decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
       child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: 20,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -99,7 +106,14 @@ class BottomNavigation extends StatelessWidget {
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsScreen(),
+                  ),
+                );
+              },
               icon: SvgPicture.asset(
                 'assets/icons/4.svg',
                 color: const Color(0xff004D43),
