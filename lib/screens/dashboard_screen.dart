@@ -84,48 +84,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
               ]),
               const SizedBox(
-                height: 30,
-              ),
-              const Headings(text: 'Quick Actions'),
-              const SizedBox(
-                height: 5,
-              ),
-              const SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    QuickActionCards(
-                      icon: 'assets/icons/recharge.svg',
-                      time: 'Bills',
-                    ),
-                    QuickActionCards(
-                      icon: 'assets/icons/charity.svg',
-                      time: 'Charity',
-                    ),
-                    QuickActionCards(
-                      icon: 'assets/icons/loan.svg',
-                      time: 'Loan',
-                    ),
-                    QuickActionCards(
-                      icon: 'assets/icons/charity.svg',
-                      time: 'Gifts',
-                    ),
-                    QuickActionCards(
-                      icon: 'assets/icons/loan.svg',
-                      time: 'Charity',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
                 height: 20,
+              ),
+              const TransactionCard(
+                heading: Headings(text: 'Quick Actions'),
+                content: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      QuickActionCards(
+                        icon: 'assets/icons/recharge.svg',
+                        time: 'Bills',
+                      ),
+                      QuickActionCards(
+                        icon: 'assets/icons/charity.svg',
+                        time: 'Charity',
+                      ),
+                      QuickActionCards(
+                        icon: 'assets/icons/loan.svg',
+                        time: 'Loan',
+                      ),
+                      QuickActionCards(
+                        icon: 'assets/icons/charity.svg',
+                        time: 'Gifts',
+                      ),
+                      QuickActionCards(
+                        icon: 'assets/icons/loan.svg',
+                        time: 'Charity',
+                      ),
+                    ],
+                  ),
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 60.0),
                 child: Column(
                   children: [
                     const TransactionCard(
-                      height: 2,
                       heading: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
