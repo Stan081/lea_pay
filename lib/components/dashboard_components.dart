@@ -14,37 +14,40 @@ class QuickActionCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 5),
+      padding: const EdgeInsets.only(right: 12),
       child: Column(
         children: [
-          SizedBox(
-            width: 80,
-            height: 80,
-            child: Card(
-              elevation: 0,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Center(
-                child: SvgPicture.asset(
-                  width: 34,
-                  height: 34,
-                  //color: const Color(0xff004D43),
-                  colorFilter:
-                      ColorFilter.mode(Color(0xff004D43), BlendMode.dst),
-                  icon,
-                ),
+          Container(
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey[500]!),
+                borderRadius: BorderRadius.circular(16)),
+            width: 90,
+            height: 90,
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SvgPicture.asset(
+                      width: 34,
+                      height: 34,
+                      icon,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    time,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black),
+                  ),
+                ],
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            time,
-            style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Color(0xffA4A9AE)),
           ),
         ],
       ),
