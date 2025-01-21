@@ -16,6 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseAppComponent(
+      showBottomNavBar: true,
       appBar: const WelcomeAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(

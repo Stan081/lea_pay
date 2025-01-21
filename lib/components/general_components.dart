@@ -11,12 +11,18 @@ class BaseAppComponent extends StatelessWidget {
   final Widget body;
   final double? paddingTop = 16;
   final Color? color;
+  final bool showBottomNavBar;
   const BaseAppComponent(
-      {super.key, required this.body, required this.appBar, this.color});
+      {super.key,
+      required this.body,
+      required this.appBar,
+      this.color,
+      required this.showBottomNavBar});
 
   @override
   Widget build(BuildContext context) {
     var color = this.color ?? backgroundColor;
+
     return Scaffold(
         backgroundColor: color,
         appBar: appBar,
@@ -24,7 +30,8 @@ class BaseAppComponent extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: SafeArea(child: body),
         ),
-        bottomNavigationBar: const BottomNavigation());
+        bottomNavigationBar:
+            showBottomNavBar ? const BottomNavigation() : const SizedBox());
   }
 }
 
@@ -135,6 +142,29 @@ class BottomNavigation extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class BodyText extends StatelessWidget {
+  final String text;
+  final Color? fontColor;
+  final FontWeight? fontWeight;
+  const BodyText(
+      {super.key, required this.text, this.fontColor, this.fontWeight});
+
+  @override
+  Widget build(BuildContext context) {
+    var color = fontColor ?? Colors.black;
+    var weight = fontWeight ?? FontWeight.w300;
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 18,
+        color: color,
+        fontWeight: weight,
+        //fontFamily: 'Lato-Black',
       ),
     );
   }
