@@ -54,32 +54,6 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size(double.infinity, 80);
 }
 
-class AppBarSubHeaderText extends StatelessWidget {
-  final String text;
-  const AppBarSubHeaderText({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 18),
-    );
-  }
-}
-
-class AppBarHeaderText extends StatelessWidget {
-  final String text;
-  const AppBarHeaderText({super.key, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    );
-  }
-}
-
 class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? color;
   final String header;
@@ -118,25 +92,91 @@ class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size(double.infinity, 80);
 }
 
-class StaticAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Widget content;
-  const StaticAppBar({super.key, required this.content});
+class SuffixNavigatorAppBar extends StatelessWidget
+    implements PreferredSizeWidget {
+  final Color? color;
+  final String header;
+  final Widget suffix;
+  const SuffixNavigatorAppBar(
+      {super.key, this.color, required this.header, required this.suffix});
 
   @override
   Widget build(BuildContext context) {
+    var color = this.color ?? backgroundColor;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Container(
-            color: backgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 35),
-              child: Center(child: Center(child: content)),
-            )),
+          color: color,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              PrimaryIconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios_outlined,
+                  color: Colors.black,
+                  size: 18,
+                ),
+                action: () {
+                  Navigator.pop(
+                    context,
+                  );
+                },
+              ),
+              AppBarHeaderText(text: header),
+              suffix
+            ],
+          ),
+        ),
       ),
     );
   }
 
   @override
   Size get preferredSize => const Size(double.infinity, 80);
+}
+
+class StaticAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget header;
+  const StaticAppBar({super.key, required this.header});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Container(
+          height: 50,
+          color: backgroundColor,
+          child: Center(child: Center(child: header))),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 80);
+}
+
+class AppBarSubHeaderText extends StatelessWidget {
+  final String text;
+  const AppBarSubHeaderText({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(fontSize: 18),
+    );
+  }
+}
+
+class AppBarHeaderText extends StatelessWidget {
+  final String text;
+  const AppBarHeaderText({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    );
+  }
 }

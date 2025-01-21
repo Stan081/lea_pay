@@ -17,6 +17,7 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseAppComponent(
+      showBottomNavBar: true,
       appBar: const NavigatorAppBar(
         header: 'Wallet',
       ),
