@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/buttons.dart';
-import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/login_screen.dart';
+import 'package:lea_pay/screens/otp_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -11,7 +11,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool? agreeToTerms = true;
+  bool? agreeToTerms = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,7 +155,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const DashboardScreen(),
+                          builder: (context) => const OtpScreen(),
                         ),
                       );
                     },

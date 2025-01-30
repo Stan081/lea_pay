@@ -18,7 +18,8 @@ class _WalletScreenState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     return BaseAppComponent(
       showBottomNavBar: true,
-      appBar: const NavigatorAppBar(
+      appBar: const CustomAppBar(
+        // prefix: ,
         header: 'Wallet',
       ),
       body: SingleChildScrollView(
@@ -27,14 +28,11 @@ class _WalletScreenState extends State<WalletScreen> {
             const SingleChildScrollView(
               dragStartBehavior: DragStartBehavior.start,
               scrollDirection: Axis.horizontal,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: Row(
-                  children: [
-                    VirtualCard(),
-                    VirtualCard(),
-                  ],
-                ),
+              child: Row(
+                children: [
+                  VirtualCard(),
+                  VirtualCard(),
+                ],
               ),
             ),
             TransactionCard(

@@ -17,18 +17,32 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
   Widget build(BuildContext context) {
     return BaseAppComponent(
       showBottomNavBar: false,
-      appBar: SuffixNavigatorAppBar(
-        header: 'Details',
-        color: Colors.white,
-        suffix: PrimaryIconButton(
-          icon: const Icon(
-            Icons.close,
-            color: Colors.black,
-            size: 18,
+      appBar: CustomAppBar(
+        prefix: Padding(
+          padding: const EdgeInsets.all(6),
+          child: PrimaryIconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_outlined,
+              color: Colors.black,
+              size: 20,
+            ),
+            action: () {
+              Navigator.pop(context);
+            },
           ),
-          action: () {},
+        ),
+        header: 'Transactions',
+        suffix: IconButton(
+          icon: const Icon(Icons.close, color: Colors.black),
+          onPressed: () {
+            // Close the screen or perform some action
+          },
         ),
       ),
+      // const NavigatorAppBar(
+      //   header: 'Details',
+      //   color: Colors.white,
+      // ),
       color: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -55,21 +55,18 @@ class TransactionDetails extends StatelessWidget {
     var myPoints = points != null ? '+$points' : '';
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Flexible(
-        flex: 1,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                VendorLogo(logo: logo),
-                TransactionVendor(vendor: vendor, time: time),
-              ],
-            ),
-            TransactionValues(price: price, myPoints: myPoints),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              VendorLogo(logo: logo),
+              TransactionVendor(vendor: vendor, time: time),
+            ],
+          ),
+          TransactionValues(price: price, myPoints: myPoints),
+        ],
       ),
     );
   }
@@ -221,14 +218,12 @@ class TransactionItem extends StatelessWidget {
               ),
             );
           },
-          child: Expanded(
-            child: TransactionDetails(
-              vendor: vendor,
-              logo: logo,
-              price: price,
-              time: time,
-              points: points,
-            ),
+          child: TransactionDetails(
+            vendor: vendor,
+            logo: logo,
+            price: price,
+            time: time,
+            points: points,
           ),
         ),
         Padding(

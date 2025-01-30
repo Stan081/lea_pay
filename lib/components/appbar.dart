@@ -9,49 +9,53 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Container(
-          color: backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: AppBar(
+          leadingWidth: double.infinity,
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          backgroundColor: backgroundColor,
+          leading: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppBarHeaderText(
-                    text: "Good Morning, Lea",
-                  ),
-                  AppBarSubHeaderText(text: "Welcome to LeaPay"),
-                ],
+              AppBarHeaderText(
+                text: "Good Morning, Lea",
               ),
-              Stack(
-                children: [
-                  Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12)),
-                    child: const Icon(
-                      Icons.notifications_none_rounded,
-                      size: 25,
-                    ),
-                  )
-                ],
-              )
+              AppBarSubHeaderText(text: "Welcome to LeaPay"),
             ],
           ),
-        ),
-      ),
+          actions: [
+            Stack(children: [
+              PrimaryIconButton(
+                icon: const Icon(
+                  Icons.notifications_none_rounded,
+                  color: Colors.black,
+                  size: 25,
+                ),
+                action: () {
+                  Navigator.pop(context);
+                },
+              ),
+              // Container(
+              //   width: 45,
+              //   height: 45,
+              //   decoration: BoxDecoration(
+              //       border: Border.all(),
+              //       borderRadius: BorderRadius.circular(12)),
+              //   child: const Icon(
+              //     Icons.notifications_none_rounded,
+              //     size: 20,
+              //   ),
+              // ),
+            ])
+          ]),
     );
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 80);
+  Size get preferredSize => const Size(double.infinity, 60);
 }
 
 class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -62,34 +66,34 @@ class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     var color = this.color ?? backgroundColor;
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Container(
-          color: color,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              PrimaryIconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_outlined,
-                  color: Colors.black,
-                  size: 18,
-                ),
-                action: () {},
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        color: color,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            PrimaryIconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_outlined,
+                color: Colors.black,
+                size: 18,
               ),
-              AppBarHeaderText(text: header),
-              const NotificationButton()
-            ],
-          ),
+              action: () {
+                Navigator.pop(context);
+              },
+            ),
+            AppBarHeaderText(text: header),
+            const NotificationButton()
+          ],
         ),
       ),
     );
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 80);
+  Size get preferredSize => const Size(double.infinity, 60);
 }
 
 class SuffixNavigatorAppBar extends StatelessWidget
@@ -97,8 +101,13 @@ class SuffixNavigatorAppBar extends StatelessWidget
   final Color? color;
   final String header;
   final Widget suffix;
+  final Function action;
   const SuffixNavigatorAppBar(
-      {super.key, this.color, required this.header, required this.suffix});
+      {super.key,
+      this.color,
+      required this.header,
+      required this.suffix,
+      required this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +128,7 @@ class SuffixNavigatorAppBar extends StatelessWidget
                   size: 18,
                 ),
                 action: () {
-                  Navigator.pop(
-                    context,
-                  );
+                  Navigator.pop(context);
                 },
               ),
               AppBarHeaderText(text: header),
@@ -134,7 +141,7 @@ class SuffixNavigatorAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 80);
+  Size get preferredSize => const Size(double.infinity, 60);
 }
 
 class StaticAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -179,4 +186,49 @@ class AppBarHeaderText extends StatelessWidget {
       style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
+}
+
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Widget? prefix; // Optional prefix widget (e.g., back button)
+  final String? header; // Text for the header
+  final Widget? suffix; // Optional suffix widget (e.g., close button)
+
+  const CustomAppBar({
+    super.key,
+    this.prefix,
+    this.header,
+    this.suffix,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: AppBar(
+        backgroundColor: backgroundColor, // Customize background color
+        elevation: 0,
+        scrolledUnderElevation: 0, // Customize elevation
+        leading: prefix ?? const SizedBox(),
+        // IconButton(
+        //   icon: const Icon(Icons.arrow_back, color: Colors.black),
+        //   onPressed: () => Navigator.pop(context),
+        // ),
+        title: Text(
+          header ?? '',
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          if (suffix != null) suffix!,
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 60);
 }
