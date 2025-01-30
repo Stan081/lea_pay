@@ -18,7 +18,9 @@ class PrimaryIconButton extends StatelessWidget {
       ),
       child: IconButton(
         icon: icon,
-        onPressed: action(),
+        onPressed: () {
+          action();
+        },
       ),
     );
   }
