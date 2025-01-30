@@ -3,6 +3,7 @@ import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/transactions.dart';
+import 'package:lea_pay/data/transaction_data.dart';
 import 'package:lea_pay/screens/wallet_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -121,8 +122,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 padding: const EdgeInsets.only(bottom: 60.0),
                 child: Column(
                   children: [
-                    const TransactionCard(
-                      heading: Row(
+                    TransactionCard(
+                      heading: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Headings(text: 'Transactions'),
@@ -133,38 +134,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           )
                         ],
                       ),
-                      content: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          TransactionItem(
-                            vendor: 'Netflix',
-                            logo: 'assets/icons/netflix.png',
-                            price: '10.00',
-                            time: '11:00 AM',
-                            points: '25',
+                      content: SizedBox(
+                        height: 250,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 3,
+                          itemBuilder: (context, index) => TransactionItem(
+                            vendor: transactions[index]['vendor']!,
+                            logo: transactions[index]['logo']!,
+                            price: transactions[index]['price']!,
+                            time: transactions[index]['time']!,
+                            points: transactions[index]['points']!,
                           ),
-                          TransactionItem(
-                            vendor: 'Paypal',
-                            logo: 'assets/icons/paypal.png',
-                            price: '200.00',
-                            time: '02:35 PM',
-                            points: '10',
-                          ),
-                          TransactionItem(
-                            vendor: 'Spotify',
-                            logo: 'assets/icons/spotify.png',
-                            price: '23.85',
-                            time: '07:47 PM',
-                            points: '0',
-                          ),
-                          TransactionItem(
-                            vendor: 'Spotify',
-                            logo: 'assets/icons/spotify.png',
-                            price: '23.85',
-                            time: '07:47 PM',
-                            points: '0',
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     Row(
