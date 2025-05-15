@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class VirtualCard extends StatelessWidget {
+  final bool isSelected;
   const VirtualCard({
     super.key,
+    required this.isSelected,
   });
 
   @override
@@ -10,10 +12,10 @@ class VirtualCard extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.only(right: 20),
+          padding: const EdgeInsets.all(10),
           child: SizedBox(
-            width: 320,
-            height: 180,
+            width: isSelected ? 350 : 330,
+            height: isSelected ? 200 : 180,
             child: Image.asset(
               scale: 1,
               'assets/illustrations/card.png',

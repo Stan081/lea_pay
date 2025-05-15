@@ -6,11 +6,17 @@ class TransactionCard extends StatelessWidget {
   final num? height;
   final Widget content;
   final Widget heading;
+  final double? horizontalPadding;
   const TransactionCard(
-      {super.key, required this.content, required this.heading, this.height});
+      {super.key,
+      required this.content,
+      required this.heading,
+      this.height,
+      this.horizontalPadding});
 
   @override
   Widget build(BuildContext context) {
+    var horizontal = horizontalPadding ?? 16;
     return Padding(
       padding: const EdgeInsets.only(bottom: 25),
       child: Container(
@@ -18,7 +24,8 @@ class TransactionCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30), color: Colors.white),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+          padding:
+              EdgeInsets.only(top: 16, bottom: 16, left: 16, right: horizontal),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -90,10 +97,11 @@ class TransactionValues extends StatelessWidget {
       children: [
         Text(
           '\$$price',
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: subheadingFontSize, fontWeight: FontWeight.bold),
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: tinySpacing,
         ),
         LeaPoints(myPoints: myPoints),
       ],
@@ -173,16 +181,17 @@ class TransactionVendor extends StatelessWidget {
         children: [
           Text(
             vendor,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: subheadingFontSize, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: smallSpacing,
           ),
           Text(
             time,
-            style: const TextStyle(
-                fontSize: 16,
-                color: Color(0xffA4A9AE),
+            style: TextStyle(
+                fontSize: bodyFontSize,
+                color: const Color(0xffA4A9AE),
                 fontWeight: FontWeight.w600),
           )
         ],
