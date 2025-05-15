@@ -54,13 +54,15 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   '-\$1,000.00',
-                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: (headingFontSize * 2),
+                      fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: smallSpacing),
                 const AppBarSubHeaderText(text: 'Transfer to Jasmine Suleiman'),
-                const SizedBox(height: 20),
+                SizedBox(height: mediumSpacing),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -68,13 +70,14 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           color: backgroundColor),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 20),
                         child: Text(
                           'Mon, Oct 20, 02:40 PM',
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: subheadingFontSize,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -99,80 +102,80 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
                     ),
                   ],
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(20),
+                Padding(
+                  padding: const EdgeInsets.all(20),
                   child: Column(children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppBarSubHeaderText(
+                          const AppBarSubHeaderText(
                             text: 'Status',
                           ),
                           Text(
                             'Complete',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppBarSubHeaderText(
+                          const AppBarSubHeaderText(
                             text: 'Routing Number',
                           ),
                           Text(
                             '031101279',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppBarSubHeaderText(
+                          const AppBarSubHeaderText(
                             text: 'Account Number',
                           ),
                           Text(
                             '389151184360',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppBarSubHeaderText(
+                          const AppBarSubHeaderText(
                             text: 'Bank Nmae',
                           ),
                           Text(
                             'Bank of America',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           )
                         ],
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          AppBarSubHeaderText(
+                          const AppBarSubHeaderText(
                             text: 'Note',
                           ),
                           Text(
                             'for Starbucks',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           )
                         ],
                       ),
@@ -182,12 +185,12 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 30),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 30),
             child: Text(
               'Problem with this transaction?',
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: subheadingFontSize,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),
             ),

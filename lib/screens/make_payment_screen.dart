@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class MakePaymentScreen extends StatefulWidget {
   const MakePaymentScreen({super.key});
@@ -11,9 +12,9 @@ class _MakePaymentScreen extends State<MakePaymentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: const SizedBox(
-        width: 100,
-        height: 100,
+      body: SizedBox(
+        width: (defaultSpacing * 2),
+        height: (defaultSpacing * 2),
       ),
       floatingActionButton: IconButton(
         onPressed: () {},

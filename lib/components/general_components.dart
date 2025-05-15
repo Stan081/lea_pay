@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lea_pay/screens/components.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/make_payment_screen.dart';
-import 'package:lea_pay/screens/settings_screen.dart';
+import 'package:lea_pay/screens/profile_screen.dart';
+import 'package:lea_pay/screens/transaction_details_screen.dart';
+//import 'package:lea_pay/screens/settings_screen.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class BaseAppComponent extends StatelessWidget {
@@ -27,7 +28,7 @@ class BaseAppComponent extends StatelessWidget {
         backgroundColor: color,
         appBar: appBar,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
           child: SafeArea(child: body),
         ),
         bottomNavigationBar:
@@ -117,7 +118,7 @@ class BottomNavigation extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const SettingsScreen(),
+                    builder: (context) => const ProfileScreen(),
                   ),
                 );
               },
@@ -131,7 +132,7 @@ class BottomNavigation extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Components(),
+                    builder: (context) => const TransactionDetailsScreen(),
                   ),
                 );
               },
@@ -161,7 +162,7 @@ class BodyText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 18,
+        fontSize: subheadingFontSize,
         color: color,
         fontWeight: weight,
         //fontFamily: 'Lato-Black',

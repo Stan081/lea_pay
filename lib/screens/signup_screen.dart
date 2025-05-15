@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lea_pay/components/buttons.dart';
 import 'package:lea_pay/screens/login_screen.dart';
 import 'package:lea_pay/screens/otp_screen.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -34,12 +35,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     "Create Your Account",
                     style: TextStyle(color: Colors.white, fontSize: 30),
                   ),
-                  const SizedBox(
-                    height: 35,
+                  SizedBox(
+                    height: largeSpacing,
                   ),
-                  const SizedBox(
-                    height: 63,
-                    child: TextField(
+                  SizedBox(
+                    height: extraLargeSpacing,
+                    child: const TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -50,12 +51,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: mediumSpacing,
                   ),
-                  const SizedBox(
-                    height: 63,
-                    child: TextField(
+                  SizedBox(
+                    height: extraLargeSpacing,
+                    child: const TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -66,12 +67,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: mediumSpacing,
                   ),
-                  const SizedBox(
-                    height: 63,
-                    child: TextField(
+                  SizedBox(
+                    height: extraLargeSpacing,
+                    child: const TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -82,12 +83,12 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: mediumSpacing,
                   ),
-                  const SizedBox(
-                    height: 63,
-                    child: TextField(
+                  SizedBox(
+                    height: extraLargeSpacing,
+                    child: const TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -98,11 +99,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: mediumSpacing,
                   ),
                   SizedBox(
-                    height: 63,
+                    height: extraLargeSpacing,
                     child: TextField(
                       decoration: InputDecoration(
                         suffixIconColor: const Color(0xff004D43),
@@ -146,8 +147,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 40,
+                  SizedBox(
+                    height: largeSpacing,
                   ),
                   PrimaryButton(
                     text: 'Sign Up',
@@ -160,8 +161,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
                   ),
-                  const SizedBox(
-                    height: 40,
+                  SizedBox(
+                    height: defaultSpacing,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -180,9 +181,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             );
                           },
-                          child: const Text(
+                          child: Text(
                             'Login',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: subheadingFontSize),
                           ))
                     ],
                   )

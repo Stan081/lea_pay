@@ -56,7 +56,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 63,
+      height: extraLargeSpacing,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {

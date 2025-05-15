@@ -3,6 +3,7 @@ import 'package:lea_pay/components/buttons.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/signup_screen.dart';
 import 'package:lea_pay/utils/authenticator.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,16 +31,17 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text(
+                Text(
                   "Login to Your Account",
-                  style: TextStyle(color: Colors.white, fontSize: 30),
+                  style: TextStyle(
+                      color: Colors.white, fontSize: (bodyFontSize * 2)),
                 ),
-                const SizedBox(
-                  height: 35,
+                SizedBox(
+                  height: largeSpacing,
                 ),
-                const SizedBox(
-                  height: 63,
-                  child: TextField(
+                SizedBox(
+                  height: extraLargeSpacing,
+                  child: const TextField(
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -50,11 +52,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: mediumSpacing,
                 ),
                 SizedBox(
-                  height: 63,
+                  height: extraLargeSpacing,
                   child: TextField(
                     decoration: InputDecoration(
                       suffixIconColor: const Color(0xff004D43),
@@ -121,8 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text('forgot details?'),
                       ),
                     ]),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: largeSpacing,
                 ),
                 PrimaryButton(
                   text: 'Login',
@@ -135,15 +137,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: largeSpacing,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Dont have an account?",
-                      style: TextStyle(color: Color(0xff8E949A), fontSize: 14),
+                      style: TextStyle(
+                          color: Color(0xff8E949A), fontSize: bodyFontSize),
                     ),
                     TextButton(
                         onPressed: () {
@@ -154,9 +157,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           );
                         },
-                        child: const Text(
+                        child: Text(
                           'Sign Up',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: subheadingFontSize),
                         ))
                   ],
                 )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class QuickActionCards extends StatelessWidget {
   final String icon;
@@ -35,13 +36,13 @@ class QuickActionCards extends StatelessWidget {
                       icon,
                     ),
                   ),
-                  const SizedBox(
-                    height: 6,
+                  SizedBox(
+                    height: tinySpacing,
                   ),
                   Text(
                     time,
-                    style: const TextStyle(
-                        fontSize: 14,
+                    style: TextStyle(
+                        fontSize: bodyFontSize,
                         fontWeight: FontWeight.w500,
                         color: Colors.black),
                   ),
@@ -89,8 +90,8 @@ class PaymentsCards extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 70,
-                    height: 70,
+                    width: extraLargeSpacing,
+                    height: extraLargeSpacing,
                     child: Card(
                       elevation: 10,
                       color: Colors.white,
@@ -111,16 +112,18 @@ class PaymentsCards extends StatelessWidget {
                       children: [
                         Text(
                           vendor,
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontSize: headingFontSize,
+                              fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          height: 5,
+                        SizedBox(
+                          height: tinySpacing,
                         ),
                         Text(
                           time,
-                          style: const TextStyle(
-                              fontSize: 18, color: Color(0xffA4A9AE)),
+                          style: TextStyle(
+                              fontSize: headingFontSize,
+                              color: const Color(0xffA4A9AE)),
                         )
                       ],
                     ),
@@ -133,12 +136,13 @@ class PaymentsCards extends StatelessWidget {
                 children: [
                   Text(
                     '\$$price',
-                    style: const TextStyle(
-                        fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: headingFontSize, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     myPoints,
-                    style: const TextStyle(fontSize: 15),
+                    style: TextStyle(
+                        fontSize: subheadingFontSize, color: Colors.black38),
                   ),
                 ],
               )

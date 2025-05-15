@@ -10,7 +10,7 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: AppBar(
           leadingWidth: double.infinity,
           elevation: 0,
@@ -170,7 +170,7 @@ class AppBarSubHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontSize: 18),
+      style: TextStyle(fontSize: subheadingFontSize, color: Colors.black54),
     );
   }
 }
@@ -183,7 +183,7 @@ class AppBarHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      style: TextStyle(fontSize: headingFontSize, fontWeight: FontWeight.bold),
     );
   }
 }
@@ -215,9 +215,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         // ),
         title: Text(
           header ?? '',
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.black,
-            fontSize: 20,
+            fontSize: headingFontSize,
             fontWeight: FontWeight.bold,
           ),
         ),

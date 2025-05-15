@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/screens/login_screen.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -56,15 +57,16 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 35,
+                    SizedBox(
+                      height: largeSpacing,
                     ),
-                    const Text(
+                    Text(
                       'A convenient way to manage yout \nmoney securely from your mobie device',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: subheadingFontSize, color: Colors.white),
                     ),
-                    const SizedBox(
-                      height: 35,
+                    SizedBox(
+                      height: largeSpacing,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,8 +75,8 @@ class HomeScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width / 1.8,
                         ),
                         SizedBox(
-                          height: 50,
-                          width: 100,
+                          height: defaultSpacing,
+                          width: (defaultSpacing * 2),
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -91,10 +93,11 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(10))),
                                 elevation: 20),
-                            child: const Text(
+                            child: Text(
                               'Skip',
                               style: TextStyle(
-                                  color: Color(0xff004D43), fontSize: 15),
+                                  color: const Color(0xff004D43),
+                                  fontSize: subheadingFontSize),
                             ),
                           ),
                         ),

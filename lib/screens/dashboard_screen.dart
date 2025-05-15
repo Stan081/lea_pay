@@ -5,6 +5,7 @@ import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/transactions.dart';
 import 'package:lea_pay/data/transaction_data.dart';
 import 'package:lea_pay/screens/wallet_screen.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -40,16 +41,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text(
+                      Text(
                         'Total Balance',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
+                        style: TextStyle(
+                            fontSize: subheadingFontSize, color: Colors.white),
                       ),
-                      const FittedBox(
+                      FittedBox(
                         fit: BoxFit.fill,
                         child: Text(
                           "\$100,000,000",
                           style: TextStyle(
-                              fontSize: 45,
+                              fontSize: (headingFontSize * 2),
+                              fontFamily: 'Pally',
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
@@ -65,14 +68,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       builder: (context) =>
                                           const WalletScreen()));
                             },
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text('My Wallet ',
                                     style: TextStyle(
-                                      fontSize: 18,
+                                      fontSize: headingFontSize,
                                     )),
-                                Icon(
+                                const Icon(
                                   Icons.arrow_circle_right,
                                   size: 45,
                                 ),
@@ -85,10 +88,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
               ]),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: mediumSpacing,
               ),
               const TransactionCard(
+                horizontalPadding: 0,
                 heading: Headings(text: 'Quick Actions'),
                 content: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
@@ -123,14 +127,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: Column(
                   children: [
                     TransactionCard(
-                      heading: const Row(
+                      heading: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Headings(text: 'Transactions'),
+                          const Headings(text: 'Transactions'),
                           Text(
                             'See all',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                                fontWeight: FontWeight.bold,
+                                fontSize: subheadingFontSize),
                           )
                         ],
                       ),
@@ -156,10 +161,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         const Headings(text: 'Scheduled Payment'),
                         TextButton(
                           onPressed: () {},
-                          child: const Text(
+                          child: Text(
                             'View All',
                             style: TextStyle(
-                                color: Color(0xffA4A9AE), fontSize: 16),
+                                color: const Color(0xffA4A9AE),
+                                fontSize: subheadingFontSize),
                           ),
                         )
                       ],
@@ -185,8 +191,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       time: '07:47 PM',
                       points: null,
                     ),
-                    const SizedBox(
-                      height: 15,
+                    SizedBox(
+                      height: smallSpacing,
                     ),
                   ],
                 ),
