@@ -113,7 +113,7 @@ class PaymentsCards extends StatelessWidget {
                         Text(
                           vendor,
                           style: TextStyle(
-                              fontSize: headingFontSize,
+                              fontSize: subheadingFontSize,
                               fontWeight: FontWeight.bold),
                         ),
                         SizedBox(

@@ -39,11 +39,6 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
           },
         ),
       ),
-      // const NavigatorAppBar(
-      //   header: 'Details',
-      //   color: Colors.white,
-      // ),
-      color: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

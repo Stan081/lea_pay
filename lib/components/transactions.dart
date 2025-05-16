@@ -2,113 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lea_pay/screens/transaction_details_screen.dart';
 import 'package:lea_pay/utils/contants.dart';
 
-class TransactionCard extends StatelessWidget {
-  final num? height;
-  final Widget content;
-  final Widget heading;
-  final double? horizontalPadding;
-  const TransactionCard(
-      {super.key,
-      required this.content,
-      required this.heading,
-      this.height,
-      this.horizontalPadding});
-
-  @override
-  Widget build(BuildContext context) {
-    var horizontal = horizontalPadding ?? 16;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30), color: Colors.white),
-        child: Padding(
-          padding:
-              EdgeInsets.only(top: 16, bottom: 16, left: 16, right: horizontal),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: heading,
-              ),
-              content
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class TransactionDetails extends StatelessWidget {
-  final String logo;
-  final String price;
-  final String time;
-  final String vendor;
-  final String? points;
-  const TransactionDetails(
-      {super.key,
-      required this.logo,
-      required this.price,
-      required this.time,
-      required this.vendor,
-      this.points});
-
-  @override
-  Widget build(BuildContext context) {
-    var myPoints = points != null ? '+$points' : '';
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              VendorLogo(logo: logo),
-              TransactionVendor(vendor: vendor, time: time),
-            ],
-          ),
-          TransactionValues(price: price, myPoints: myPoints),
-        ],
-      ),
-    );
-  }
-}
-
-class TransactionValues extends StatelessWidget {
-  const TransactionValues({
-    super.key,
-    required this.price,
-    required this.myPoints,
-  });
-
-  final String price;
-  final String myPoints;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Text(
-          '\$$price',
-          style: TextStyle(
-              fontSize: subheadingFontSize, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(
-          height: tinySpacing,
-        ),
-        LeaPoints(myPoints: myPoints),
-      ],
-    );
-  }
-}
-
 class LeaPoints extends StatelessWidget {
   const LeaPoints({
     super.key,
@@ -195,6 +88,113 @@ class TransactionVendor extends StatelessWidget {
                 fontWeight: FontWeight.w600),
           )
         ],
+      ),
+    );
+  }
+}
+
+class TransactionValues extends StatelessWidget {
+  const TransactionValues({
+    super.key,
+    required this.price,
+    required this.myPoints,
+  });
+
+  final String price;
+  final String myPoints;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          '\$$price',
+          style: TextStyle(
+              fontSize: subheadingFontSize, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          height: tinySpacing,
+        ),
+        LeaPoints(myPoints: myPoints),
+      ],
+    );
+  }
+}
+
+class TransactionDetails extends StatelessWidget {
+  final String logo;
+  final String price;
+  final String time;
+  final String vendor;
+  final String? points;
+  const TransactionDetails(
+      {super.key,
+      required this.logo,
+      required this.price,
+      required this.time,
+      required this.vendor,
+      this.points});
+
+  @override
+  Widget build(BuildContext context) {
+    var myPoints = points != null ? '+$points' : '';
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              VendorLogo(logo: logo),
+              TransactionVendor(vendor: vendor, time: time),
+            ],
+          ),
+          TransactionValues(price: price, myPoints: myPoints),
+        ],
+      ),
+    );
+  }
+}
+
+class TransactionCard extends StatelessWidget {
+  final num? height;
+  final Widget content;
+  final Widget heading;
+  final double? horizontalPadding;
+  const TransactionCard(
+      {super.key,
+      required this.content,
+      required this.heading,
+      this.height,
+      this.horizontalPadding});
+
+  @override
+  Widget build(BuildContext context) {
+    var horizontal = horizontalPadding ?? 16;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 25),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30), color: Colors.white),
+        child: Padding(
+          padding:
+              EdgeInsets.only(top: 16, bottom: 16, left: 16, right: horizontal),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: heading,
+              ),
+              content
+            ],
+          ),
+        ),
       ),
     );
   }

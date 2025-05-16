@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                               'Skip',
                               style: TextStyle(
                                   color: const Color(0xff004D43),
-                                  fontSize: subheadingFontSize),
+                                  fontSize: bodyFontSize),
                             ),
                           ),
                         ),

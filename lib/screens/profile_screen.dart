@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/transactions.dart';
+import 'package:lea_pay/utils/contants.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -10,8 +11,8 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseAppComponent(
       showBottomNavBar: true,
-      appBar: const StaticAppBar(
-        header: Headings(text: 'Profile'),
+      appBar: const CustomAppBar(
+        header: 'Profile',
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -49,8 +50,8 @@ class ProfileScreen extends StatelessWidget {
                 )
               ]),
             ),
-            const TransactionCard(
-              content: Column(
+            TransactionCard(
+              content: const Column(
                 children: [
                   Row(
                     children: [
@@ -141,10 +142,11 @@ class ProfileScreen extends StatelessWidget {
               heading: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Headings(text: 'Personal Info'),
+                  const Headings(text: 'Personal Info'),
                   Text(
                     'Edit',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: headingFontSize, fontWeight: FontWeight.bold),
                   )
                 ],
               ),
