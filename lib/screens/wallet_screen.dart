@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/appbar.dart';
-import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/transactions.dart';
-import 'package:lea_pay/components/virtual_card.dart';
+import 'package:lea_pay/components/virtual_card_components.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class WalletScreen extends StatefulWidget {
@@ -74,8 +73,8 @@ class _WalletScreenState extends State<WalletScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: const BottomNavigation(),
+    return BaseAppComponent(
+      showBottomNavBar: true,
       appBar: const CustomAppBar(
         header: 'Wallet',
       ),
@@ -86,7 +85,7 @@ class _WalletScreenState extends State<WalletScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: (defaultSpacing * 4), // Adjust height for the card list
+                height: (defaultSpacing * 5), // Adjust height for the card list
                 child: PageView.builder(
                   controller: _cardPageController,
                   onPageChanged: (index) {
@@ -96,12 +95,15 @@ class _WalletScreenState extends State<WalletScreen> {
                   },
                   itemCount: _transactions.length,
                   itemBuilder: (context, index) {
-                    return VirtualCard(
-                      isSelected: index == _selectedIndex,
+                    return Center(
+                      child: VirtualCard(
+                        isSelected: index == _selectedIndex,
+                      ),
                     );
                   },
                 ),
               ),
+              const VirtualCardActions(),
               TransactionCard(
                 heading: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -154,41 +156,3 @@ class _WalletScreenState extends State<WalletScreen> {
     );
   }
 }
-
-// class VirtualCard extends StatelessWidget {
-//   final bool isSelected;
-
-//   const VirtualCard({super.key, required this.isSelected});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedContainer(
-//       duration: const Duration(milliseconds: 300),
-//       margin: const EdgeInsets.symmetric(horizontal: 10),
-//       decoration: BoxDecoration(
-//         color: isSelected ? Colors.blue : Colors.grey[300],
-//         borderRadius: BorderRadius.circular(15),
-//         boxShadow: isSelected
-//             ? [
-//                 BoxShadow(
-//                   color: Colors.black26,
-//                   blurRadius: 10,
-//                   offset: Offset(0, 5),
-//                 ),
-//               ]
-//             : [],
-//       ),
-//       width: isSelected ? 350 : 330,
-//       height: isSelected ? 200 : 180,
-//       child: Center(
-//         child: Text(
-//           isSelected ? 'Selected Card' : 'Card',
-//           style: TextStyle(
-//             color: isSelected ? Colors.white : Colors.black,
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
