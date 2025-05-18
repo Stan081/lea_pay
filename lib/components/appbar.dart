@@ -31,7 +31,7 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               PrimaryIconButton(
                 icon: const Icon(
                   Icons.notifications_none_rounded,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 25,
                 ),
                 action: () {

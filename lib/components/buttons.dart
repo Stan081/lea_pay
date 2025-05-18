@@ -13,6 +13,7 @@ class PrimaryIconButton extends StatelessWidget {
       width: 45,
       height: 45,
       decoration: BoxDecoration(
+        color: primaryColor,
         border: Border.all(color: Colors.grey[400]!),
         borderRadius: BorderRadius.circular(12),
       ),
@@ -72,6 +73,29 @@ class PrimaryButton extends StatelessWidget {
           text,
           style: const TextStyle(color: Color(0xff004D43), fontSize: 15),
         ),
+      ),
+    );
+  }
+}
+
+class BackNavButton extends StatelessWidget {
+  const BackNavButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(6),
+      child: PrimaryIconButton(
+        icon: const Icon(
+          Icons.arrow_back_ios_outlined,
+          color: Colors.white,
+          size: 20,
+        ),
+        action: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
