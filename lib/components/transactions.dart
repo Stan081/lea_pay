@@ -216,34 +216,37 @@ class TransactionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const TransactionDetailsScreen(),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const TransactionDetailsScreen(),
+          ),
+        );
+      },
+      child: Container(
+        color: Colors.transparent, // Ensures the entire area is clickable
+        child: Column(
+          children: [
+            TransactionDetails(
+              vendor: vendor,
+              logo: logo,
+              price: price,
+              time: time,
+              points: points,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 65),
+              child: Divider(
+                height: 1,
+                color: Colors.grey[100],
+                thickness: 2,
               ),
-            );
-          },
-          child: TransactionDetails(
-            vendor: vendor,
-            logo: logo,
-            price: price,
-            time: time,
-            points: points,
-          ),
+            ),
+          ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 65),
-          child: Divider(
-            height: 1,
-            color: Colors.grey[100],
-            thickness: 2,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
