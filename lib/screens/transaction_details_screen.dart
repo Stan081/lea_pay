@@ -18,19 +18,7 @@ class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
     return BaseAppComponent(
       showBottomNavBar: false,
       appBar: CustomAppBar(
-        prefix: Padding(
-          padding: const EdgeInsets.all(6),
-          child: PrimaryIconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios_outlined,
-              color: Colors.black,
-              size: 20,
-            ),
-            action: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
+        prefix: const BackNavButton(),
         header: 'Transactions',
         suffix: IconButton(
           icon: const Icon(Icons.close, color: Colors.black),
