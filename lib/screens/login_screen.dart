@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text(
                       "Dont have an account?",
                       style: TextStyle(
-                          color: Color(0xff8E949A), fontSize: bodyFontSize),
+                          color: const Color(0xff8E949A), fontSize: bodyFontSize),
                     ),
                     TextButton(
                         onPressed: () {
