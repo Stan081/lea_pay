@@ -1,56 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/utils/contants.dart';
 
 class QuickActionCards extends StatelessWidget {
-  final String icon;
-  final String time;
+  final Widget icon;
+  final String text;
+  final VoidCallback? onTap;
 
   const QuickActionCards({
     super.key,
     required this.icon,
-    required this.time,
+    required this.text,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 12),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey[500]!),
-                borderRadius: BorderRadius.circular(16)),
-            width: 90,
-            height: 90,
-            child: Padding(
-              padding: const EdgeInsets.all(14),
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey[500]!),
+                  borderRadius: BorderRadius.circular(16)),
+              width: 55,
+              height: 55,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(
-                    child: SvgPicture.asset(
-                      width: 34,
-                      height: 34,
-                      icon,
-                    ),
-                  ),
-                  SizedBox(
-                    height: tinySpacing,
-                  ),
-                  Text(
-                    time,
-                    style: TextStyle(
-                        fontSize: bodyFontSize,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
+                  Center(child: icon),
                 ],
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: tinySpacing,
+            ),
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: bodyFontSize,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+          ],
+        ),
       ),
     );
   }
