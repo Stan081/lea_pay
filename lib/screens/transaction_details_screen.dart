@@ -1,183 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/buttons.dart';
-import 'package:lea_pay/components/general_components.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
-class TransactionDetailsScreen extends StatefulWidget {
-  const TransactionDetailsScreen({super.key});
+class TransactionDetailsScreen extends StatelessWidget {
+  final Map<String, dynamic> transaction;
 
-  @override
-  State<TransactionDetailsScreen> createState() =>
-      _TransactionDetailsScreenState();
-}
+  const TransactionDetailsScreen({super.key, required this.transaction});
 
-class _TransactionDetailsScreenState extends State<TransactionDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return BaseAppComponent(
-      showBottomNavBar: false,
+    final amount = double.parse(transaction['price'] as String);
+    final isCredit = transaction['type'] == 'credit';
+    final amountColor = isCredit ? Colors.green : Colors.black;
+
+    return Scaffold(
       appBar: CustomAppBar(
         prefix: const BackNavButton(),
-        header: 'Transactions',
-        suffix: IconButton(
-          icon: const Icon(Icons.close, color: Colors.black),
-          onPressed: () {
-            // Close the screen or perform some action
-          },
+        header: 'Transaction Details',
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(kSpacingMedium),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Column(
+                children: [
+                  Text(
+                    '${isCredit ? '+' : '-'}\$${amount.toStringAsFixed(2)}',
+                    style: TextStyle(
+                      fontSize: kAmountFontSize,
+                      fontWeight: FontWeight.bold,
+                      color: amountColor,
+                    ),
+                  ),
+                  const SizedBox(height: kSpacingSmall),
+                  Text(
+                    '${transaction['vendor']}',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const SizedBox(height: kSpacingMedium),
+                  Chip(
+                    label: Text('${transaction['status']}'),
+                    backgroundColor: transaction['status'] == 'Completed'
+                        ? Colors.green.shade100
+                        : Colors.orange.shade100,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: kSpacingLarge),
+            const Divider(),
+            const SizedBox(height: kSpacingLarge),
+            _buildDetailRow('Date:', '${transaction['date']}'),
+            _buildDetailRow('Time:', '${transaction['time']}'),
+            _buildDetailRow('Type:', '${transaction['type']}'),
+            if (transaction['points'].isNotEmpty)
+              _buildDetailRow('Loyalty Points:', '${transaction['points']}'),
+            const Spacer(),
+            Center(
+              child: TextButton(
+                onPressed: () {},
+                child: const Text('Report an issue'),
+              ),
+            ),
+          ],
         ),
       ),
-      body: Column(
+    );
+  }
+
+  Widget _buildDetailRow(String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kSpacingSmall),
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 8,
-          ),
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  '-\$1,000.00',
-                  style: TextStyle(
-                      fontSize: (headingFontSize * 2),
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: smallSpacing),
-                const AppBarSubHeaderText(text: 'Transfer to Jasmine Suleiman'),
-                SizedBox(height: mediumSpacing),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: backgroundColor),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 20),
-                        child: Text(
-                          'Mon, Oct 20, 02:40 PM',
-                          style: TextStyle(
-                              fontSize: subheadingFontSize,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: backgroundColor,
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 20,
-                        ),
-                        child: Text(
-                          'Transfer',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppBarSubHeaderText(
-                            text: 'Status',
-                          ),
-                          Text(
-                            'Complete',
-                            style: TextStyle(fontSize: subheadingFontSize),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppBarSubHeaderText(
-                            text: 'Routing Number',
-                          ),
-                          Text(
-                            '031101279',
-                            style: TextStyle(fontSize: subheadingFontSize),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppBarSubHeaderText(
-                            text: 'Account Number',
-                          ),
-                          Text(
-                            '389151184360',
-                            style: TextStyle(fontSize: subheadingFontSize),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppBarSubHeaderText(
-                            text: 'Bank Nmae',
-                          ),
-                          Text(
-                            'Bank of America',
-                            style: TextStyle(fontSize: subheadingFontSize),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const AppBarSubHeaderText(
-                            text: 'Note',
-                          ),
-                          Text(
-                            'for Starbucks',
-                            style: TextStyle(fontSize: subheadingFontSize),
-                          )
-                        ],
-                      ),
-                    ),
-                  ]),
-                )
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: Text(
-              'Problem with this transaction?',
-              style: TextStyle(
-                  fontSize: subheadingFontSize,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-          )
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+          Text(value),
         ],
       ),
     );
