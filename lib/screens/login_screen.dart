@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/buttons.dart';
+import 'package:lea_pay/components/textfields.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
+import 'package:lea_pay/screens/dispatcher_screen.dart';
 import 'package:lea_pay/screens/signup_screen.dart';
 import 'package:lea_pay/utils/authenticator.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +17,20 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showPassword = false;
+
+  Future<bool> _authenticateUser(BuildContext context) async {
+    bool isAuthenticated = await authenticate(context);
+    if (isAuthenticated) {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        );
+      }
+      return true;
+    }
+    return false;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,70 +43,31 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 35),
+          padding: const EdgeInsets.all(kSpacingXLarge),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
+                const Text(
                   "Login to Your Account",
-                  style: TextStyle(
-                      color: Colors.white, fontSize: (bodyFontSize * 2)),
+                  style:
+                      TextStyle(color: Colors.white, fontSize: kFontSizeXLarge),
                 ),
-                SizedBox(
-                  height: largeSpacing,
+                const SizedBox(
+                  height: kSpacingLarge,
                 ),
-                SizedBox(
-                  height: extraLargeSpacing,
-                  child: const TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "username",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                    ),
-                  ),
+                const CustomTextField(hintText: 'username'),
+                const SizedBox(
+                  height: kSpacingMedium,
                 ),
-                SizedBox(
-                  height: mediumSpacing,
-                ),
-                SizedBox(
-                  height: extraLargeSpacing,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      suffixIconColor: const Color(0xff004D43),
-                      suffixIcon: IconButton(
-                        iconSize: 30,
-                        onPressed: () async {
-                          if (showPassword == false) {
-                            showPassword = await authenticate(context);
-                            !showPassword
-                                ? print('hello')
-                                : Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SignupScreen(),
-                                    ),
-                                  );
-                          } else {
-                            print('not authenticated');
-                          }
-                        },
-                        icon: const Icon(
-                          Icons.fingerprint_outlined,
-                        ),
-                      ),
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: "password",
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                      ),
-                    ),
-                  ),
+                PasswordField(
+                  authenticate: _authenticateUser,
+                  showPassword: showPassword,
+                  onShowPasswordChanged: (value) {
+                    setState(() {
+                      showPassword = value;
+                    });
+                  },
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,8 +101,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: const Text('forgot details?'),
                       ),
                     ]),
-                SizedBox(
-                  height: largeSpacing,
+                const SizedBox(
+                  height: kSpacingLarge,
                 ),
                 PrimaryButton(
                   text: 'Login',
@@ -137,32 +115,49 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                 ),
-                SizedBox(
-                  height: largeSpacing,
+                const SizedBox(
+                  height: kSpacingLarge,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Dont have an account?",
+                    const Text(
+                      "Don't have an account?",
                       style: TextStyle(
-                          color: const Color(0xff8E949A), fontSize: bodyFontSize),
+                          color: Color(0xff8E949A), fontSize: kFontSizeSmall),
                     ),
                     TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignupScreen(),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Sign Up',
-                          style: TextStyle(fontSize: subheadingFontSize),
-                        ))
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignupScreen(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: kFontSizeSmall),
+                      ),
+                    )
                   ],
-                )
+                ),
+                TextButton(
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.clear();
+                    if (mounted) {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DispatcherScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    }
+                  },
+                  child: const Text('Reset Onboarding (for testing)'),
+                ),
               ],
             ),
           ),
