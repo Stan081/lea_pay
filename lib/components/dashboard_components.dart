@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class QuickActionCards extends StatelessWidget {
   final Widget icon;
@@ -18,15 +18,15 @@ class QuickActionCards extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: kSpacingSmall),
         child: Column(
           children: [
             Container(
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[500]!),
-                  borderRadius: BorderRadius.circular(16)),
-              width: 55,
-              height: 55,
+                  borderRadius: BorderRadius.circular(kRadiusMedium)),
+              width: 55, // Keep custom size
+              height: 55, // Keep custom size
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -34,13 +34,13 @@ class QuickActionCards extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: tinySpacing,
+            const SizedBox(
+              height: kSpacingExtraSmall,
             ),
             Text(
               text,
-              style: TextStyle(
-                  fontSize: bodyFontSize,
+              style: const TextStyle(
+                  fontSize: kFontSizeSmall,
                   fontWeight: FontWeight.w500,
                   color: Colors.black),
             ),
@@ -69,15 +69,15 @@ class PaymentsCards extends StatelessWidget {
   Widget build(BuildContext context) {
     var myPoints = points != null ? '+$points' : '';
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: kSpacingSmall),
       child: Container(
         width: double.infinity,
-        height: 100,
+        height: 100, // Keep custom size
         decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(10))),
+            borderRadius: BorderRadius.all(Radius.circular(kRadiusSmall))),
         child: Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(kSpacingMedium),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -85,13 +85,13 @@ class PaymentsCards extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: extraLargeSpacing,
-                    height: extraLargeSpacing,
+                    width: kSpacingXLarge,
+                    height: kSpacingXLarge,
                     child: Card(
                       elevation: 10,
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(kRadiusMedium),
                       ),
                       child: Image.asset(
                         fit: BoxFit.fill,
@@ -100,25 +100,25 @@ class PaymentsCards extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: kSpacingSmall),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           vendor,
-                          style: TextStyle(
-                              fontSize: subheadingFontSize,
+                          style: const TextStyle(
+                              fontSize: kFontSizeMedium,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(
-                          height: tinySpacing,
+                        const SizedBox(
+                          height: kSpacingExtraSmall,
                         ),
                         Text(
                           time,
-                          style: TextStyle(
-                              fontSize: headingFontSize,
-                              color: const Color(0xffA4A9AE)),
+                          style: const TextStyle(
+                              fontSize: kFontSizeLarge,
+                              color: Color(0xffA4A9AE)),
                         )
                       ],
                     ),
@@ -131,13 +131,13 @@ class PaymentsCards extends StatelessWidget {
                 children: [
                   Text(
                     '\$$price',
-                    style: TextStyle(
-                        fontSize: headingFontSize, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: kFontSizeLarge, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     myPoints,
-                    style: TextStyle(
-                        fontSize: subheadingFontSize, color: Colors.black38),
+                    style: const TextStyle(
+                        fontSize: kFontSizeMedium, color: Colors.black38),
                   ),
                 ],
               )

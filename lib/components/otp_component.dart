@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class OtpInputField extends StatefulWidget {
-  const OtpInputField({required Key key}) : super(key: key);
+  const OtpInputField({super.key});
 
   @override
-  _OtpInputFieldState createState() => _OtpInputFieldState();
+  OtpInputFieldState createState() => OtpInputFieldState();
 }
 
-class _OtpInputFieldState extends State<OtpInputField> {
+class OtpInputFieldState extends State<OtpInputField> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(0xfff7f6fb),
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 32),
+          padding: const EdgeInsets.symmetric(
+              vertical: kSpacingXXLarge, horizontal: kSpacingXXXLarge),
           child: Column(
             children: [
               Align(
@@ -25,19 +26,19 @@ class _OtpInputFieldState extends State<OtpInputField> {
                   onTap: () => Navigator.pop(context),
                   child: const Icon(
                     Icons.arrow_back,
-                    size: 32,
+                    size: kIconSizeMedium,
                     color: Colors.black54,
                   ),
                 ),
               ),
-              SizedBox(
-                height: mediumSpacing,
+              const SizedBox(
+                height: kSpacingLarge,
               ),
               Container(
-                width: 200,
-                height: 200,
+                width: kImageWidth,
+                height: kImageHeight,
                 decoration: BoxDecoration(
-                  color: Colors.deepPurple.shade50,
+                  color: kPrimaryColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Image.asset(
@@ -45,35 +46,35 @@ class _OtpInputFieldState extends State<OtpInputField> {
                 ),
               ),
               const SizedBox(
-                height: 24,
+                height: kSpacingXXLarge,
               ),
-              Text(
+              const Text(
                 'Verification',
                 style: TextStyle(
-                  fontSize: headingFontSize,
+                  fontSize: kFontSizeXLarge,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: smallSpacing,
+              const SizedBox(
+                height: kSpacingSmall,
               ),
-              Text(
+              const Text(
                 "Enter your OTP code number",
                 style: TextStyle(
-                  fontSize: bodyFontSize,
+                  fontSize: kFontSizeSmall,
                   fontWeight: FontWeight.bold,
                   color: Colors.black38,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
-                height: mediumSpacing,
+              const SizedBox(
+                height: kSpacingLarge,
               ),
               Container(
-                padding: const EdgeInsets.all(28),
+                padding: const EdgeInsets.all(kSpacingXXLarge),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(kRadiusXLarge),
                 ),
                 child: Column(
                   children: [
@@ -86,8 +87,8 @@ class _OtpInputFieldState extends State<OtpInputField> {
                         _textFieldOTP(first: false, last: true),
                       ],
                     ),
-                    SizedBox(
-                      height: mediumSpacing,
+                    const SizedBox(
+                      height: kSpacingLarge,
                     ),
                     SizedBox(
                       width: double.infinity,
@@ -97,19 +98,20 @@ class _OtpInputFieldState extends State<OtpInputField> {
                           foregroundColor:
                               WidgetStateProperty.all<Color>(Colors.white),
                           backgroundColor:
-                              WidgetStateProperty.all<Color>(Colors.purple),
+                              WidgetStateProperty.all<Color>(kPrimaryColor),
                           shape:
                               WidgetStateProperty.all<RoundedRectangleBorder>(
                             RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0),
+                              borderRadius:
+                                  BorderRadius.circular(kRadiusXLarge),
                             ),
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(14.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(kFontSizeSmall),
                           child: Text(
                             'Verify',
-                            style: TextStyle(fontSize: subheadingFontSize),
+                            style: TextStyle(fontSize: kFontSizeMedium),
                           ),
                         ),
                       ),
@@ -117,27 +119,27 @@ class _OtpInputFieldState extends State<OtpInputField> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: mediumSpacing,
+              const SizedBox(
+                height: kSpacingLarge,
               ),
-              Text(
+              const Text(
                 "Didn't you receive any code?",
                 style: TextStyle(
-                  fontSize: bodyFontSize,
+                  fontSize: kFontSizeSmall,
                   fontWeight: FontWeight.bold,
                   color: Colors.black38,
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
-                height: mediumSpacing,
+              const SizedBox(
+                height: kSpacingLarge,
               ),
-              Text(
+              const Text(
                 "Resend New Code",
                 style: TextStyle(
-                  fontSize: subheadingFontSize,
+                  fontSize: kFontSizeMedium,
                   fontWeight: FontWeight.bold,
-                  color: Colors.purple,
+                  color: kPrimaryColor,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -148,36 +150,38 @@ class _OtpInputFieldState extends State<OtpInputField> {
     );
   }
 
-  Widget _textFieldOTP({required bool first, last}) {
+  Widget _textFieldOTP({required bool first, required bool last}) {
     return SizedBox(
-      height: (extraLargeSpacing + 20),
+      height: kButtonHeight,
       child: AspectRatio(
         aspectRatio: 1.0,
         child: TextField(
           autofocus: true,
           onChanged: (value) {
-            if (value.length == 1 && last == false) {
+            if (value.length == 1 && !last) {
               FocusScope.of(context).nextFocus();
             }
-            if (value.isEmpty && first == false) {
+            if (value.isEmpty && !first) {
               FocusScope.of(context).previousFocus();
             }
           },
           showCursor: false,
           readOnly: false,
           textAlign: TextAlign.center,
-          style:
-              TextStyle(fontSize: headingFontSize, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              fontSize: kFontSizeXLarge, fontWeight: FontWeight.bold),
           keyboardType: TextInputType.number,
           maxLength: 1,
           decoration: InputDecoration(
             counter: const Offstage(),
             enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: Colors.black12),
-                borderRadius: BorderRadius.circular(12)),
+                borderSide:
+                    const BorderSide(width: kBorderWidth, color: kBorderColor),
+                borderRadius: BorderRadius.circular(kRadiusMedium)),
             focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(width: 2, color: Colors.purple),
-                borderRadius: BorderRadius.circular(12)),
+                borderSide:
+                    const BorderSide(width: kBorderWidth, color: kPrimaryColor),
+                borderRadius: BorderRadius.circular(kRadiusMedium)),
           ),
         ),
       ),
