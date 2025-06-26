@@ -47,8 +47,8 @@ class _AmountInputScreenState extends State<AmountInputScreen> {
   @override
   Widget build(BuildContext context) {
     final double amountValue = (int.tryParse(_amount) ?? 0) / 100.0;
-    final formattedAmount =
-        NumberFormat.currency(locale: 'en_US', symbol: '\$').format(amountValue);
+    final formattedAmount = NumberFormat.currency(locale: 'en_US', symbol: '\$')
+        .format(amountValue);
 
     return Scaffold(
       backgroundColor: backgroundColor,

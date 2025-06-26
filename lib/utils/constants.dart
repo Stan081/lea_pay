@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // Font Sizes
 const double kFontSizeExtraSmall = 12.0;
-const double kFontSizeSmall = 16.0;
+const double kFontSizeSmall = 14.0;
 const double kFontSizeMedium = 20.0;
 const double kFontSizeLarge = 24.0;
 const double kFontSizeXLarge = 28.0;

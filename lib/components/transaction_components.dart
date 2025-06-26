@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/utils/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class TransactionListItem extends StatelessWidget {
   final Map<String, dynamic> transaction;
@@ -20,36 +21,36 @@ class TransactionListItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: kSpacingLarge),
+        padding: EdgeInsets.only(bottom: 2.h),
         child: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10.sp),
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 border: Border.all(color: kLightGreyColor, width: 1.0),
                 color: Colors.white,
                 borderRadius:
-                    const BorderRadius.all(Radius.circular(kRadiusMedium)),
+                    BorderRadius.all(Radius.circular(12.sp)),
               ),
               child: Image.asset(transaction['logo']!,
-                  height: kIconSizeMedium, width: kIconSizeMedium),
+                  height: 5.h, width: 10.w),
             ),
-            const SizedBox(width: kSpacingMedium),
+            SizedBox(width: 4.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     transaction['vendor']!,
-                    style: const TextStyle(
-                        fontSize: kFontSizeSmall, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 11.sp, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: kSpacingTiny),
+                  SizedBox(height: 0.5.h),
                   Text(
                     transaction['time']!,
-                    style: const TextStyle(
-                        fontSize: kFontSizeSmall, color: kDarkGreyColor),
+                    style: TextStyle(
+                        fontSize: 10.sp, color: kDarkGreyColor),
                   ),
                 ],
               ),
@@ -60,11 +61,11 @@ class TransactionListItem extends StatelessWidget {
                 Text(
                   '${isCredit ? '+' : '-'}\$${amount.toStringAsFixed(2)}',
                   style: TextStyle(
-                      fontSize: kFontSizeSmall,
+                      fontSize: 11.sp,
                       fontWeight: FontWeight.bold,
                       color: amountColor),
                 ),
-                const SizedBox(height: kSpacingSmall),
+                SizedBox(height: 1.h),
                 if (transaction['points'].isNotEmpty)
                   LeaPoints(myPoints: transaction['points']),
               ],
@@ -88,12 +89,13 @@ class LeaPoints extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: kSecondaryColor, borderRadius: BorderRadius.circular(20)),
+          color: kSecondaryColor,
+          borderRadius: BorderRadius.circular(20.sp)),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
         child: Text(
           '$myPoints LP',
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -114,22 +116,22 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var horizontal = horizontalPadding ?? 16;
+    var horizontal = horizontalPadding ?? 4.w;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
+      padding: EdgeInsets.only(bottom: 3.h),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30), color: Colors.white),
+            borderRadius: BorderRadius.circular(20.sp), color: Colors.white),
         child: Padding(
           padding:
-              EdgeInsets.only(top: 16, bottom: 16, left: 16, right: horizontal),
+              EdgeInsets.fromLTRB(4.w, 2.h, horizontal, 2.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.symmetric(vertical: 1.h),
                 child: heading,
               ),
               content

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/utils/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class QuickActionCards extends StatelessWidget {
   final Widget icon;
@@ -163,8 +164,8 @@ class MoreForYouSection extends StatelessWidget {
           crossAxisCount: 2,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: kSpacingSmall,
-          mainAxisSpacing: kSpacingSmall,
+          crossAxisSpacing: 2.w,
+          mainAxisSpacing: 2.w,
           childAspectRatio: 1,
           children: const [
             MoreForYouCard(
@@ -215,49 +216,52 @@ class MoreForYouCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(kSpacingMedium),
+      padding: EdgeInsets.all(12.sp),
       decoration: BoxDecoration(
         color: backgroundColor,
-        borderRadius: BorderRadius.circular(kRadiusMedium),
+        borderRadius: BorderRadius.circular(12.sp),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: 35,
-            height: 35,
+            width: 9.w,
+            height: 9.w,
             decoration: BoxDecoration(
               color: iconBackgroundColor,
-              borderRadius: BorderRadius.circular(kRadiusMedium),
+              borderRadius: BorderRadius.circular(10.sp),
             ),
             child: Center(
               child: SvgPicture.asset(
                 icon,
-                width: 24,
-                height: 24,
+                width: 5.w,
+                height: 5.w,
                 colorFilter:
                     const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
             ),
           ),
-          // const SizedBox(height: kSpacingSmall)
           Text(
             description,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
-              fontSize: (kFontSizeExtraSmall + 2),
+              fontSize: 9.sp,
             ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: kSpacingSmall),
+          SizedBox(height: 1.h),
           Flexible(
             child: Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.black,
-                fontSize: (kFontSizeExtraSmall + 2),
+                fontSize: 9.sp,
                 fontWeight: FontWeight.bold,
               ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

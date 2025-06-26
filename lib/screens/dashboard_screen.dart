@@ -10,7 +10,7 @@ import 'package:lea_pay/data/transaction_data.dart';
 import 'package:lea_pay/screens/bank_transfer_screen.dart';
 // import 'package:lea_pay/screens/wallet_screen.dart';
 import 'package:lea_pay/screens/new_wallet_screen.dart';
-import 'package:lea_pay/utils/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -34,36 +34,36 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height / 5,
+                    height: 20.h,
                     child: Image.asset(
                       'assets/illustrations/balance_banner.jpg',
                       fit: BoxFit.fill,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(kSpacingLarge),
+                    padding: EdgeInsets.all(16.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        const Text(
+                        Text(
                           'Total Balance',
                           style: TextStyle(
-                              fontSize: kFontSizeMedium, color: Colors.white),
+                              fontSize: 12.sp, color: Colors.white),
                         ),
-                        const FittedBox(
+                        FittedBox(
                           fit: BoxFit.fill,
                           child: Text(
                             "\$3,000",
                             style: TextStyle(
-                                fontSize: (kFontSizeExtraLarge),
+                                fontSize: 24.sp,
                                 // fontFamily: 'Pally',
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ),
                         ),
-                        const SizedBox(
-                          height: kSpacingSmall,
+                        SizedBox(
+                          height: 2.h,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -98,16 +98,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         builder: (context) =>
                                             const NewWalletScreen()));
                               },
-                              child: const Row(
+                              child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text('New Wallet ',
                                       style: TextStyle(
-                                        fontSize: kFontSizeSmall,
+                                        fontSize: 10.sp,
                                       )),
                                   Icon(
                                     Icons.arrow_circle_right,
-                                    size: kIconSizeLarge,
+                                    size: 16.sp,
                                   ),
                                 ],
                               ),
@@ -118,9 +118,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(
-                height: kSpacingSmall,
               ),
               // TransactionCard(
               //   horizontalPadding: 0,
@@ -171,7 +168,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               //   ),
               // ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 60.0),
+                padding: EdgeInsets.only(bottom: 8.h),
                 child: Column(
                   children: [
                     const TransactionCard(
@@ -193,21 +190,21 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                               );
                             },
-                            child: const Row(
+                            child: Row(
                               children: [
                                 Text(
                                   'See all',
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: kFontSizeMedium,
+                                    fontSize: 12.sp,
                                   ),
                                 ),
-                                SizedBox(width: kSpacingExtraSmall),
+                                SizedBox(width: 1.w),
                                 Icon(
                                   Icons.arrow_forward_ios,
                                   color: Colors.grey,
-                                  size: kSpacingLarge,
+                                  size: 14.sp,
                                 ),
                               ],
                             ),

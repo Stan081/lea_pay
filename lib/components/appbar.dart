@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/buttons.dart';
 import 'package:lea_pay/utils/constants.dart';
+import 'package:sizer/sizer.dart';
 
 class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const WelcomeAppBar({
@@ -10,7 +11,7 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: AppBar(
           leadingWidth: double.infinity,
           elevation: 0,
@@ -29,10 +30,10 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           actions: [
             Stack(children: [
               PrimaryIconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.notifications_none_rounded,
                   color: kPrimaryColor,
-                  size: kIconSizeMedium,
+                  size: 20.sp,
                 ),
                 action: () {},
               ),
@@ -42,7 +43,7 @@ class WelcomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, kAppBarHeight);
+  Size get preferredSize => Size.fromHeight(8.h);
 }
 
 class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -54,7 +55,7 @@ class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     var color = this.color ?? backgroundColor;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Container(
         color: color,
         child: Row(
@@ -62,10 +63,10 @@ class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             PrimaryIconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back_ios_outlined,
                 color: kDarkGreyColor,
-                size: kIconSizeSmall,
+                size: 16.sp,
               ),
               action: () {
                 Navigator.pop(context);
@@ -80,7 +81,7 @@ class NavigatorAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, kAppBarHeight);
+  Size get preferredSize => Size.fromHeight(8.h);
 }
 
 class SuffixNavigatorAppBar extends StatelessWidget
@@ -101,7 +102,7 @@ class SuffixNavigatorAppBar extends StatelessWidget
     var color = this.color ?? backgroundColor;
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        padding: EdgeInsets.symmetric(horizontal: 4.w),
         child: Container(
           color: color,
           child: Row(
@@ -109,10 +110,10 @@ class SuffixNavigatorAppBar extends StatelessWidget
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               PrimaryIconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_back_ios_outlined,
                   color: kPrimaryColor,
-                  size: kIconSizeSmall,
+                  size: 16.sp,
                 ),
                 action: action ??
                     () {
@@ -129,7 +130,7 @@ class SuffixNavigatorAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, kAppBarHeight);
+  Size get preferredSize => Size.fromHeight(8.h);
 }
 
 class AppBarSubHeaderText extends StatelessWidget {
@@ -140,7 +141,7 @@ class AppBarSubHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(fontSize: kFontSizeSmall, color: kDarkGreyColor),
+      style: TextStyle(fontSize: 10.sp, color: kDarkGreyColor),
     );
   }
 }
@@ -153,8 +154,8 @@ class AppBarHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-          fontSize: (kFontSizeSmall + 2),
+      style: TextStyle(
+          fontSize: 12.sp,
           fontWeight: FontWeight.bold,
           color: kDarkGreyColor),
     );
@@ -183,9 +184,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: prefix ?? const SizedBox(),
         title: Text(
           header ?? '',
-          style: const TextStyle(
+          style: TextStyle(
             color: kDarkGreyColor,
-            fontSize: kFontSizeLarge,
+            fontSize: 14.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -198,5 +199,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, kAppBarHeight);
+  Size get preferredSize => Size.fromHeight(8.h);
 }
