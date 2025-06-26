@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/components/transactions.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -18,237 +18,153 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 40),
+              padding: const EdgeInsets.only(bottom: kSpacingHuge),
               child:
                   Stack(alignment: AlignmentDirectional.bottomEnd, children: [
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      width: 6,
+                      width: kSpacingSmall,
                       color: Colors.white,
                     ),
-                    borderRadius: BorderRadius.circular(110),
+                    borderRadius: BorderRadius.circular(kRadiusCircle),
                   ),
                   child: CircleAvatar(
-                    backgroundImage:
-                        const AssetImage('./assets/images/Lea.PNG'),
+                    backgroundImage: const AssetImage('assets/images/Lea.PNG'),
                     backgroundColor: Colors.grey[350],
-                    radius: 90,
+                    radius: kSpacingHuge * 2, // Keep custom size
                   ),
                 ),
                 Container(
-                  width: 60,
-                  height: 60,
+                  width: kSpacingXXLarge, // Keep custom size
+                  height: kSpacingXXLarge, // Keep custom size
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(kRadiusXLarge),
                   ),
                   child: const Icon(
                     Icons.edit,
-                    size: 35,
+                    size: kIconSizeMedium,
                   ),
                 )
               ]),
             ),
-            TransactionCard(
-              content: const Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person_2_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Name'),
-                            BodyText(
-                              text: 'Jasmine Suleiman',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.email_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Email'),
-                            BodyText(
-                              text: 'jassulei@gmail.com',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.local_phone_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Phone'),
-                            BodyText(
-                              text: '+234 7098 6899 765',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person_2_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Adderess'),
-                            BodyText(
-                              text: '5 Walker Court, Arbury',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              heading: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Headings(text: 'Personal Info'),
-                  Text(
-                    'Edit',
-                    style: TextStyle(
-                        fontSize: headingFontSize, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
+            const _InfoSection(
+              title: 'Personal Info',
+              editable: true,
+              infos: [
+                _InfoItem(
+                  icon: Icons.person_2_outlined,
+                  title: 'Name',
+                  value: 'Jasmine Suleiman',
+                ),
+                _InfoItem(
+                  icon: Icons.email_outlined,
+                  title: 'Email',
+                  value: 'jassulei@gmail.com',
+                ),
+                _InfoItem(
+                  icon: Icons.local_phone_outlined,
+                  title: 'Phone',
+                  value: '+234 7098 6899 765',
+                ),
+                _InfoItem(
+                  icon: Icons.location_on_outlined,
+                  title: 'Address',
+                  value: '5 Walker Court, Arbury',
+                ),
+              ],
             ),
-            const TransactionCard(
-              content: Column(
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person_2_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Name'),
-                            BodyText(
-                              text: 'Jasmine Suleiman',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.email_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Email'),
-                            BodyText(
-                              text: 'jassulei@gmail.com',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.local_phone_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Phone'),
-                            BodyText(
-                              text: '+234 7098 6899 765',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person_2_outlined,
-                        size: 40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppBarSubHeaderText(text: 'Adderess'),
-                            BodyText(
-                              text: '5 Walker Court, Arbury',
-                              fontWeight: FontWeight.bold,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-              heading: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Headings(text: 'Account Info'),
-                ],
-              ),
-            )
+            const _InfoSection(
+              title: 'Account Info',
+              infos: [
+                _InfoItem(
+                  icon: Icons.credit_card_outlined,
+                  title: 'Card',
+                  value: '**** **** **** 1234',
+                ),
+                _InfoItem(
+                  icon: Icons.account_balance_wallet_outlined,
+                  title: 'Wallet ID',
+                  value: '123456789',
+                ),
+              ],
+            ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _InfoSection extends StatelessWidget {
+  final String title;
+  final bool editable;
+  final List<_InfoItem> infos;
+
+  const _InfoSection({
+    required this.title,
+    this.editable = false,
+    required this.infos,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TransactionCard(
+      heading: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Headings(text: title),
+          if (editable)
+            Text(
+              'Edit',
+              style: TextStyle(
+                  fontSize: kFontSizeLarge,
+                  fontWeight: FontWeight.bold,
+                  color: kPrimaryColor),
+            ),
+        ],
+      ),
+      content: Column(
+        children: infos,
+      ),
+    );
+  }
+}
+
+class _InfoItem extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String value;
+
+  const _InfoItem({
+    required this.icon,
+    required this.title,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: kSpacingSmall),
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: kIconSizeLarge,
+          ),
+          const SizedBox(width: kSpacingMedium),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppBarSubHeaderText(text: title),
+              BodyText(
+                text: value,
+                fontWeight: FontWeight.bold,
+              )
+            ],
+          ),
+        ],
       ),
     );
   }
