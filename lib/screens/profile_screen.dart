@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/general_components.dart';
-import 'package:lea_pay/components/transactions.dart';
+import 'package:lea_pay/components/transaction_components.dart';
 import 'package:lea_pay/utils/constants.dart';
 
 class ProfileScreen extends StatelessWidget {

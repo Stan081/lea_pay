@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/components/appbar.dart';
 import 'package:lea_pay/components/dashboard_components.dart';
 import 'package:lea_pay/components/general_components.dart';
-import 'package:lea_pay/components/transactions.dart';
+import 'package:lea_pay/components/transaction_components.dart';
+import 'package:lea_pay/screens/transaction_details_screen.dart';
+import 'package:lea_pay/screens/transactions_screen.dart';
 import 'package:lea_pay/data/transaction_data.dart';
-import 'package:lea_pay/screens/wallet_screen.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/screens/bank_transfer_screen.dart';
+// import 'package:lea_pay/screens/wallet_screen.dart';
+import 'package:lea_pay/screens/new_wallet_screen.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -25,101 +30,144 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 5,
-                  child: Image.asset(
-                    'assets/illustrations/balance_banner.jpg',
-                    fit: BoxFit.fill,
+              Stack(
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height / 5,
+                    child: Image.asset(
+                      'assets/illustrations/balance_banner.jpg',
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, bottom: 20, left: 20, right: 6),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        'Total Balance',
-                        style: TextStyle(
-                            fontSize: subheadingFontSize, color: Colors.white),
-                      ),
-                      FittedBox(
-                        fit: BoxFit.fill,
-                        child: Text(
-                          "\$100,000,000",
+                  Padding(
+                    padding: const EdgeInsets.all(kSpacingLarge),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Text(
+                          'Total Balance',
                           style: TextStyle(
-                              fontSize: (headingFontSize * 2),
-                              fontFamily: 'Pally',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                              fontSize: kFontSizeMedium, color: Colors.white),
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const WalletScreen()));
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text('My Wallet ',
-                                    style: TextStyle(
-                                      fontSize: headingFontSize,
-                                    )),
-                                const Icon(
-                                  Icons.arrow_circle_right,
-                                  size: 45,
-                                ),
-                              ],
+                        const FittedBox(
+                          fit: BoxFit.fill,
+                          child: Text(
+                            "\$3,000",
+                            style: TextStyle(
+                                fontSize: (kFontSizeExtraLarge),
+                                // fontFamily: 'Pally',
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: kSpacingSmall,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // TextButton(
+                            //   onPressed: () {
+                            //     Navigator.push(
+                            //         context,
+                            //         MaterialPageRoute(
+                            //             builder: (context) =>
+                            //                 const WalletScreen()));
+                            //   },
+                            //   child: const Row(
+                            //     mainAxisAlignment: MainAxisAlignment.end,
+                            //     children: [
+                            //       Text('My Wallet ',
+                            //           style: TextStyle(
+                            //             fontSize: kFontSizeSmall,
+                            //           )),
+                            //       Icon(
+                            //         Icons.arrow_circle_right,
+                            //         size: kIconSizeLarge,
+                            //       ),
+                            //     ],
+                            //   ),
+                            // ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NewWalletScreen()));
+                              },
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Text('New Wallet ',
+                                      style: TextStyle(
+                                        fontSize: kFontSizeSmall,
+                                      )),
+                                  Icon(
+                                    Icons.arrow_circle_right,
+                                    size: kIconSizeLarge,
+                                  ),
+                                ],
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                    ],
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ]),
-              SizedBox(
-                height: mediumSpacing,
+                ],
               ),
-              const TransactionCard(
+              const SizedBox(
+                height: kSpacingSmall,
+              ),
+              TransactionCard(
                 horizontalPadding: 0,
-                heading: Headings(text: 'Quick Actions'),
-                content: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      QuickActionCards(
-                        icon: 'assets/icons/recharge.svg',
-                        time: 'Bills',
+                heading: const Headings(text: 'Quick Actions'),
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    QuickActionCards(
+                      icon: SvgPicture.asset(
+                        'assets/icons/recharge.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                      QuickActionCards(
-                        icon: 'assets/icons/charity.svg',
-                        time: 'Charity',
+                      text: 'Bills',
+                    ),
+                    QuickActionCards(
+                      icon: SvgPicture.asset(
+                        'assets/icons/charity.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                      QuickActionCards(
-                        icon: 'assets/icons/loan.svg',
-                        time: 'Loan',
+                      text: 'Charity',
+                    ),
+                    QuickActionCards(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const BankTransferScreen(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(
+                        Icons.transform_rounded,
+                        color: Color(0xff004D43), // primaryColor
                       ),
-                      QuickActionCards(
-                        icon: 'assets/icons/charity.svg',
-                        time: 'Gifts',
+                      text: 'Add Money',
+                    ),
+                    QuickActionCards(
+                      icon: SvgPicture.asset(
+                        'assets/icons/loan.svg',
+                        width: 20,
+                        height: 20,
                       ),
-                      QuickActionCards(
-                        icon: 'assets/icons/loan.svg',
-                        time: 'Charity',
-                      ),
-                    ],
-                  ),
+                      text: 'Loan',
+                    ),
+                  ],
                 ),
               ),
               Padding(
@@ -131,72 +179,106 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           const Headings(text: 'Transactions'),
-                          Text(
-                            'See all',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: subheadingFontSize),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TransactionsScreen(),
+                                ),
+                              );
+                            },
+                            child: const Row(
+                              children: [
+                                Text(
+                                  'See all',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: kFontSizeMedium,
+                                  ),
+                                ),
+                                SizedBox(width: kSpacingExtraSmall),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.grey,
+                                  size: kSpacingLarge,
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
-                      content: SizedBox(
-                        height: 250,
-                        child: ListView.builder(
+                      content: Builder(builder: (context) {
+                        final allTransactions =
+                            transactionsData.values.expand((e) => e).toList();
+                        allTransactions
+                            .sort((a, b) => b['date']!.compareTo(a['date']!));
+                        final recentTransactions =
+                            allTransactions.take(3).toList();
+                        return ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: 3,
-                          itemBuilder: (context, index) => TransactionItem(
-                            vendor: transactions[index]['vendor']!,
-                            logo: transactions[index]['logo']!,
-                            price: transactions[index]['price']!,
-                            time: transactions[index]['time']!,
-                            points: transactions[index]['points']!,
-                          ),
-                        ),
-                      ),
+                          itemCount: recentTransactions.length,
+                          itemBuilder: (context, index) {
+                            final transaction = recentTransactions[index];
+                            return TransactionListItem(
+                              transaction: transaction,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        TransactionDetailsScreen(
+                                            transaction: transaction),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      }),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Headings(text: 'Scheduled Payment'),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'View All',
-                            style: TextStyle(
-                                color: const Color(0xffA4A9AE),
-                                fontSize: subheadingFontSize),
-                          ),
-                        )
-                      ],
-                    ),
-                    const PaymentsCards(
-                      vendor: 'Netflix',
-                      logo: 'assets/icons/netflix.png',
-                      price: '10.00',
-                      time: '11:00 AM',
-                      points: '25',
-                    ),
-                    const PaymentsCards(
-                      vendor: 'Paypal',
-                      logo: 'assets/icons/paypal.png',
-                      price: '200.00',
-                      time: '02:35 PM',
-                      points: '10',
-                    ),
-                    const PaymentsCards(
-                      vendor: 'Spotify',
-                      logo: 'assets/icons/spotify.png',
-                      price: '23.85',
-                      time: '07:47 PM',
-                      points: null,
-                    ),
-                    SizedBox(
-                      height: smallSpacing,
-                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     const Headings(text: 'Scheduled Payment'),
+                    //     TextButton(
+                    //       onPressed: () {},
+                    //       child: const Text(
+                    //         'View All',
+                    //         style: TextStyle(
+                    //             color: Color(0xffA4A9AE),
+                    //             fontSize: kFontSizeMedium),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+                    // const PaymentsCards(
+                    //   vendor: 'Netflix',
+                    //   logo: 'assets/icons/netflix.png',
+                    //   price: '10.00',
+                    //   time: '11:00 AM',
+                    // ),
+                    // const PaymentsCards(
+                    //   vendor: 'Paypal',
+                    //   logo: 'assets/icons/paypal.png',
+                    //   price: '200.00',
+                    //   time: '02:35 PM',
+                    // ),
+                    // const PaymentsCards(
+                    //   vendor: 'Spotify',
+                    //   logo: 'assets/icons/spotify.png',
+                    //   price: '23.85',
+                    //   time: '07:47 PM',
+                    // ),
+                    // const SizedBox(
+                    //   height: kSpacingSmall,
+                    // ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),

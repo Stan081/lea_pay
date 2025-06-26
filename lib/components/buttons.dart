@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class PrimaryIconButton extends StatelessWidget {
   final Widget icon;
-  final Function action;
-  const PrimaryIconButton(
-      {super.key, required this.icon, required this.action});
+  final VoidCallback? action;
+  const PrimaryIconButton({super.key, required this.icon, this.action});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 45,
-      height: 45,
+      width: kIconButtonSize,
+      height: kIconButtonSize,
       decoration: BoxDecoration(
-        color: primaryColor,
-        border: Border.all(color: Colors.grey[400]!),
-        borderRadius: BorderRadius.circular(12),
+        color: backgroundColor,
+        border: Border.all(color: kLightGreyColor),
+        borderRadius: BorderRadius.circular(kSpacingSmall),
       ),
       child: IconButton(
         icon: icon,
-        onPressed: () {
-          action();
-        },
+        onPressed: action,
       ),
     );
   }
@@ -39,8 +36,8 @@ class NotificationButton extends StatelessWidget {
         PrimaryIconButton(
           icon: const Icon(
             Icons.notifications_none_rounded,
-            color: Colors.black,
-            size: 25,
+            color: kPrimaryColor,
+            size: kSpacingXXLarge,
           ),
           action: () {},
         ),
@@ -51,27 +48,34 @@ class NotificationButton extends StatelessWidget {
 
 class PrimaryButton extends StatelessWidget {
   final String text;
-  final Function action;
-  const PrimaryButton({super.key, required this.text, required this.action});
+  final VoidCallback? action;
+  const PrimaryButton({super.key, required this.text, this.action});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: extraLargeSpacing,
+      height: kButtonHeight,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
-          action();
-        },
+        onPressed: action,
         style: ElevatedButton.styleFrom(
-            backgroundColor: secondaryColor,
-            shadowColor: Colors.transparent,
-            shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30))),
-            elevation: 20),
+          backgroundColor: kSecondaryColor,
+          disabledBackgroundColor: kSecondaryColor.withAlpha(128),
+          shadowColor: Colors.transparent,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(kRadiusMedium)),
+          ),
+          elevation: 20,
+        ),
         child: Text(
           text,
-          style: const TextStyle(color: Color(0xff004D43), fontSize: 15),
+          style: TextStyle(
+            color: action != null
+                ? kButtonTextColor
+                : kButtonTextColor.withAlpha(179),
+            fontSize: kFontSizeSmall,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -79,23 +83,26 @@ class PrimaryButton extends StatelessWidget {
 }
 
 class BackNavButton extends StatelessWidget {
+  final VoidCallback? action;
   const BackNavButton({
     super.key,
+    this.action,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(6),
+      padding: const EdgeInsets.all(kSpacingSmall),
       child: PrimaryIconButton(
         icon: const Icon(
           Icons.arrow_back_ios_outlined,
           color: Colors.white,
-          size: 20,
+          size: kFontSizeSmall,
         ),
-        action: () {
-          Navigator.pop(context);
-        },
+        action: action ??
+            () {
+              Navigator.pop(context);
+            },
       ),
     );
   }

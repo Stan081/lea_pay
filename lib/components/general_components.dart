@@ -3,9 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lea_pay/screens/dashboard_screen.dart';
 import 'package:lea_pay/screens/make_payment_screen.dart';
 import 'package:lea_pay/screens/profile_screen.dart';
-import 'package:lea_pay/screens/transaction_details_screen.dart';
+import 'package:lea_pay/screens/transactions_screen.dart';
 //import 'package:lea_pay/screens/settings_screen.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class BaseAppComponent extends StatelessWidget {
   final PreferredSizeWidget appBar;
@@ -28,7 +28,8 @@ class BaseAppComponent extends StatelessWidget {
         backgroundColor: color,
         appBar: appBar,
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          padding: const EdgeInsets.symmetric(
+              horizontal: kSpacingMedium, vertical: kSpacingSmall),
           child: SafeArea(child: body),
         ),
         bottomNavigationBar:
@@ -46,7 +47,8 @@ class Headings extends StatelessWidget {
       fit: BoxFit.fitWidth,
       child: Text(
         text,
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+            fontSize: kFontSizeLarge, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -132,7 +134,7 @@ class BottomNavigation extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const TransactionDetailsScreen(),
+                    builder: (context) => const TransactionsScreen(),
                   ),
                 );
               },
@@ -148,6 +150,7 @@ class BottomNavigation extends StatelessWidget {
   }
 }
 
+
 class BodyText extends StatelessWidget {
   final String text;
   final Color? fontColor;
@@ -162,7 +165,7 @@ class BodyText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: subheadingFontSize,
+        fontSize: kFontSizeMedium,
         color: color,
         fontWeight: weight,
         //fontFamily: 'Lato-Black',

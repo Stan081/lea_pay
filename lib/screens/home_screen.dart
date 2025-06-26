@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:lea_pay/screens/dispatcher_screen.dart';
 import 'package:lea_pay/screens/login_screen.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/screens/onboarding/onboarding_screen.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const double fontSize = 34;
     return Scaffold(
         body: Stack(
       children: [
@@ -22,82 +23,76 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: MediaQuery.of(context).size.height / 1.8,
+                height: MediaQuery.of(context).size.height / 1.9,
                 width: double.infinity,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 35),
+                padding: const EdgeInsets.symmetric(horizontal: kSpacingXLarge),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // const Text(
-                    //   'Manage Your Payments with',
-                    //   style: TextStyle(fontSize: 35, color: Colors.white),
-                    // ),
                     RichText(
                       textAlign: TextAlign.start,
-                      //maxLines: 1,
                       text: const TextSpan(
                         children: <TextSpan>[
                           TextSpan(
                             text: 'Manage Your\nPayments with\n',
                             style: TextStyle(
-                                // fontFamily: 'Pally',
-                                color: Colors.white,
-                                fontSize: fontSize),
+                                color: Colors.white, fontSize: kFontSizeXLarge),
                           ),
                           TextSpan(
                             text: 'mobile banking',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: fontSize,
+                                fontSize: kFontSizeXXLarge,
                                 color: Color(0xffD0FF71)),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: largeSpacing,
+                    const SizedBox(
+                      height: kSpacingXXLarge,
                     ),
-                    Text(
-                      'A convenient way to manage yout \nmoney securely from your mobie device',
+                    const Text(
+                      'A convenient way to manage your \nmoney securely from your mobile device',
                       style: TextStyle(
-                          fontSize: subheadingFontSize, color: Colors.white),
+                          fontSize: kFontSizeMedium, color: Colors.white),
                     ),
-                    SizedBox(
-                      height: largeSpacing,
+                    const SizedBox(
+                      height: kSpacingXLarge,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          width: MediaQuery.of(context).size.width / 1.8,
+                          width: MediaQuery.of(context).size.width / 1.9,
                         ),
                         SizedBox(
-                          height: defaultSpacing,
-                          width: (defaultSpacing * 2),
+                          height: kSpacingXXXLarge,
+                          width: (kSpacingXXXLarge * 2),
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const LoginScreen(),
+                                  builder: (context) =>
+                                      const OnboardingScreen(),
                                 ),
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xffD0FF71),
+                                backgroundColor: kSecondaryColor,
                                 shadowColor: Colors.transparent,
                                 shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10))),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(kRadiusMedium))),
                                 elevation: 20),
-                            child: Text(
-                              'Skip',
+                            child: const Text(
+                              'Next',
                               style: TextStyle(
-                                  color: const Color(0xff004D43),
-                                  fontSize: bodyFontSize),
+                                  color: kPrimaryColor,
+                                  fontSize: kFontSizeSmall),
                             ),
                           ),
                         ),

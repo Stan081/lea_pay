@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lea_pay/components/buttons.dart';
 import 'package:lea_pay/screens/login_screen.dart';
 import 'package:lea_pay/screens/otp_screen.dart';
-import 'package:lea_pay/utils/contants.dart';
+import 'package:lea_pay/utils/constants.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -26,89 +26,96 @@ class _SignupScreenState extends State<SignupScreen> {
         ),
         SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 150, right: 35, left: 35),
+            padding: const EdgeInsets.symmetric(
+                vertical: kSpacingHuge, horizontal: kSpacingXXXLarge),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  const SizedBox(height: kSpacingHuge * 2),
                   const Text(
                     "Create Your Account",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                    style: TextStyle(
+                        color: Colors.white, fontSize: kFontSizeXXLarge),
                   ),
-                  SizedBox(
-                    height: largeSpacing,
+                  const SizedBox(
+                    height: kSpacingLarge,
                   ),
-                  SizedBox(
-                    height: extraLargeSpacing,
-                    child: const TextField(
+                  const SizedBox(
+                    height: kSpacingXLarge,
+                    child: TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "surname",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(kRadiusMedium)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: mediumSpacing,
+                  const SizedBox(
+                    height: kSpacingMedium,
                   ),
-                  SizedBox(
-                    height: extraLargeSpacing,
-                    child: const TextField(
+                  const SizedBox(
+                    height: kSpacingXLarge,
+                    child: TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "other names",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(kRadiusMedium)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: mediumSpacing,
+                  const SizedBox(
+                    height: kSpacingMedium,
                   ),
-                  SizedBox(
-                    height: extraLargeSpacing,
-                    child: const TextField(
+                  const SizedBox(
+                    height: kSpacingXLarge,
+                    child: TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "email",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(kRadiusMedium)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: mediumSpacing,
+                  const SizedBox(
+                    height: kSpacingMedium,
                   ),
-                  SizedBox(
-                    height: extraLargeSpacing,
-                    child: const TextField(
+                  const SizedBox(
+                    height: kSpacingXLarge,
+                    child: TextField(
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
                         hintText: "phone number",
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(kRadiusMedium)),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: mediumSpacing,
+                  const SizedBox(
+                    height: kSpacingMedium,
                   ),
                   SizedBox(
-                    height: extraLargeSpacing,
+                    height: kSpacingXLarge,
                     child: TextField(
                       decoration: InputDecoration(
                         suffixIconColor: const Color(0xff004D43),
                         suffixIcon: IconButton(
-                          iconSize: 30,
+                          iconSize: kIconSizeMedium,
                           onPressed: () {},
                           icon: const Icon(
                             Icons.remove_red_eye_outlined,
@@ -118,7 +125,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         fillColor: Colors.white,
                         hintText: "password",
                         border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(kRadiusMedium)),
                         ),
                       ),
                     ),
@@ -130,7 +138,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         fillColor: WidgetStateProperty.resolveWith<Color>(
                             (Set<WidgetState> states) {
                           if (states.contains(WidgetState.selected)) {
-                            return Colors.black.withOpacity(.32);
+                            return Colors.black.withAlpha(82);
                           }
                           return Colors.white;
                         }),
@@ -147,8 +155,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: largeSpacing,
+                  const SizedBox(
+                    height: kSpacingLarge,
                   ),
                   PrimaryButton(
                     text: 'Sign Up',
@@ -161,16 +169,16 @@ class _SignupScreenState extends State<SignupScreen> {
                       );
                     },
                   ),
-                  SizedBox(
-                    height: defaultSpacing,
+                  const SizedBox(
+                    height: kSpacingMedium,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         "Already have an account?",
-                        style:
-                            TextStyle(color: Color(0xff8E949A), fontSize: 14),
+                        style: TextStyle(
+                            color: Color(0xff8E949A), fontSize: kFontSizeSmall),
                       ),
                       TextButton(
                           onPressed: () {
@@ -181,9 +189,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Login',
-                            style: TextStyle(fontSize: subheadingFontSize),
+                            style: TextStyle(fontSize: kFontSizeLarge),
                           ))
                     ],
                   )
