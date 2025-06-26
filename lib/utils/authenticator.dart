@@ -6,6 +6,9 @@ class BiometricAuthService {
 
   /// Checks if a user is authenticated and performs biometric or PIN authentication.
   Future<bool> authenticateUser(BuildContext context) async {
+    // Ensure the context is still valid before proceeding.
+    if (!context.mounted) return false;
+
     try {
       // Check if biometric authentication is supported
       bool isBiometricSupported = await _localAuth.isDeviceSupported();
@@ -22,7 +25,6 @@ class BiometricAuthService {
         );
 
         if (isAuthenticated) {
-          print("Biometric authentication successful.");
           return true;
         }
       }
@@ -30,13 +32,14 @@ class BiometricAuthService {
       // Fallback to PIN authentication if biometrics are unavailable
       return await _authenticateWithPin(context);
     } catch (e) {
-      print("Error during authentication: $e");
+      // Silently handle errors, or use a logging framework.
       return false;
     }
   }
 
   /// PIN-based fallback authentication
   Future<bool> _authenticateWithPin(BuildContext context) async {
+    if (!context.mounted) return false;
     final TextEditingController pinController = TextEditingController();
 
     return await showDialog<bool>(
