@@ -122,58 +122,62 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(
                 height: kSpacingSmall,
               ),
-              TransactionCard(
-                horizontalPadding: 0,
-                heading: const Headings(text: 'Quick Actions'),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    QuickActionCards(
-                      icon: SvgPicture.asset(
-                        'assets/icons/recharge.svg',
-                        width: 20,
-                        height: 20,
-                      ),
-                      text: 'Bills',
-                    ),
-                    QuickActionCards(
-                      icon: SvgPicture.asset(
-                        'assets/icons/charity.svg',
-                        width: 20,
-                        height: 20,
-                      ),
-                      text: 'Charity',
-                    ),
-                    QuickActionCards(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const BankTransferScreen(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(
-                        Icons.transform_rounded,
-                        color: Color(0xff004D43), // primaryColor
-                      ),
-                      text: 'Add Money',
-                    ),
-                    QuickActionCards(
-                      icon: SvgPicture.asset(
-                        'assets/icons/loan.svg',
-                        width: 20,
-                        height: 20,
-                      ),
-                      text: 'Loan',
-                    ),
-                  ],
-                ),
-              ),
+              // TransactionCard(
+              //   horizontalPadding: 0,
+              //   heading: const Headings(text: 'Quick Actions'),
+              //   content: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       QuickActionCards(
+              //         icon: SvgPicture.asset(
+              //           'assets/icons/recharge.svg',
+              //           width: 20,
+              //           height: 20,
+              //         ),
+              //         text: 'Bills',
+              //       ),
+              //       QuickActionCards(
+              //         icon: SvgPicture.asset(
+              //           'assets/icons/charity.svg',
+              //           width: 20,
+              //           height: 20,
+              //         ),
+              //         text: 'Charity',
+              //       ),
+              //       QuickActionCards(
+              //         onTap: () {
+              //           Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //               builder: (context) => const BankTransferScreen(),
+              //             ),
+              //           );
+              //         },
+              //         icon: const Icon(
+              //           Icons.transform_rounded,
+              //           color: Color(0xff004D43), // primaryColor
+              //         ),
+              //         text: 'Add Money',
+              //       ),
+              //       QuickActionCards(
+              //         icon: SvgPicture.asset(
+              //           'assets/icons/loan.svg',
+              //           width: 20,
+              //           height: 20,
+              //         ),
+              //         text: 'Loan',
+              //       ),
+              //     ],
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 60.0),
                 child: Column(
                   children: [
+                    const TransactionCard(
+                      heading: Headings(text: 'More for you'),
+                      content: MoreForYouSection(),
+                    ),
                     TransactionCard(
                       heading: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -240,42 +244,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         );
                       }),
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     const Headings(text: 'Scheduled Payment'),
-                    //     TextButton(
-                    //       onPressed: () {},
-                    //       child: const Text(
-                    //         'View All',
-                    //         style: TextStyle(
-                    //             color: Color(0xffA4A9AE),
-                    //             fontSize: kFontSizeMedium),
-                    //       ),
-                    //     )
-                    //   ],
-                    // ),
-                    // const PaymentsCards(
-                    //   vendor: 'Netflix',
-                    //   logo: 'assets/icons/netflix.png',
-                    //   price: '10.00',
-                    //   time: '11:00 AM',
-                    // ),
-                    // const PaymentsCards(
-                    //   vendor: 'Paypal',
-                    //   logo: 'assets/icons/paypal.png',
-                    //   price: '200.00',
-                    //   time: '02:35 PM',
-                    // ),
-                    // const PaymentsCards(
-                    //   vendor: 'Spotify',
-                    //   logo: 'assets/icons/spotify.png',
-                    //   price: '23.85',
-                    //   time: '07:47 PM',
-                    // ),
-                    // const SizedBox(
-                    //   height: kSpacingSmall,
-                    // ),
                   ],
                 ),
               ),

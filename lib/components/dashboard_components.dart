@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lea_pay/components/general_components.dart';
 import 'package:lea_pay/utils/constants.dart';
 
 class QuickActionCards extends StatelessWidget {
@@ -144,6 +146,121 @@ class PaymentsCards extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MoreForYouSection extends StatelessWidget {
+  const MoreForYouSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GridView.count(
+          crossAxisCount: 2,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: kSpacingSmall,
+          mainAxisSpacing: kSpacingSmall,
+          childAspectRatio: 1,
+          children: const [
+            MoreForYouCard(
+              icon: 'assets/icons/1.svg',
+              iconBackgroundColor: Color(0xffA092E9),
+              description: 'View your accounts with other banks',
+              title: 'Add accounts',
+            ),
+            MoreForYouCard(
+              icon: 'assets/icons/2.svg',
+              iconBackgroundColor: Color(0xffE992C6),
+              description: 'Check your credit score and track your progress',
+              title: 'Your credit score',
+            ),
+            MoreForYouCard(
+              icon: 'assets/icons/3.svg',
+              iconBackgroundColor: Color(0xffE9B692),
+              description: 'Take advantage of all the travel services we offer',
+              title: 'Travel',
+            ),
+            MoreForYouCard(
+              icon: 'assets/icons/4.svg',
+              iconBackgroundColor: Color(0xff92E9D4),
+              description: 'Get rewards, cashback, benefits and more',
+              title: 'More money in your pocket',
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class MoreForYouCard extends StatelessWidget {
+  final String icon;
+  final Color iconBackgroundColor;
+  final String description;
+  final String title;
+
+  const MoreForYouCard({
+    super.key,
+    required this.icon,
+    required this.iconBackgroundColor,
+    required this.description,
+    required this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(kSpacingMedium),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(kRadiusMedium),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 35,
+            height: 35,
+            decoration: BoxDecoration(
+              color: iconBackgroundColor,
+              borderRadius: BorderRadius.circular(kRadiusMedium),
+            ),
+            child: Center(
+              child: SvgPicture.asset(
+                icon,
+                width: 24,
+                height: 24,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              ),
+            ),
+          ),
+          // const SizedBox(height: kSpacingSmall)
+          Text(
+            description,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: (kFontSizeExtraSmall + 2),
+            ),
+          ),
+          const SizedBox(height: kSpacingSmall),
+          Flexible(
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: (kFontSizeExtraSmall + 2),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
